@@ -1,23 +1,30 @@
 This is the directory for the creation of daily and merged fits files, using
 the time scrambling method to produce background maps.
 
-Code was compiled with Juan Carlos' py2-v1 cvmfs project 
-(${CVMFS}/users/juancarlos/tools/py2-v1/setup.sh) 
-and an old installation of offline software 
-(/data/user/fmcnally/offline/V04-08-00/build/env-shell.sh).
-Both are hard-coded into the submission script (maker.py)
+Code currently designed to be compiled with Juan Carlos' py2-v1 cvmfs project (${CVMFS}/users/juancarlos/tools/py2-v1/setup.sh) and an old installation of offline software (/data/user/fmcnally/offline/V04-08-00/build/env-shell.sh). Both are hard-coded into the submission script (maker.py)
 
+## Files
 
-It includes:
+`Makefile`
+- Instructions for C++ compilation
 
-- README.md : this file
+`maker.py`
+- Wrapper script for cluster submission of TimeScramble
 
-- Makefile : compile time scrambling code
+`merger.py`
+- Merge daily output files into annual skymaps
 
-- TimeScramble.cc : create and save data and background maps
+`pysubmit.py`
+- Job submission to cluster
 
-- SimpleDST : ROOT classes for accessing SimpleDST and
-  trigger event information
+`README.md`
+- This file
 
-- maker.py : wrapper script for cluster submission of TimeScramble
+`SimpleDST``
+- ROOT classes for accessing SimpleDST and trigger event information
 
+`TimeScramble.cc`
+- Create and save data and time-scrambled background maps
+
+`TS-Tester.ipynb`
+- Jupyter notebook for comparison of time-scrambling and direct integration
