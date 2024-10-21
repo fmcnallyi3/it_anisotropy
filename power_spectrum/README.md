@@ -4,7 +4,7 @@
   present on the 12-year Anisotropy paper, depicting a function as energy for any
   given spherical harmonic mode (L value).
 
-
+- The following is the list of actions to accomplish the goals of this project.
 
 * acquire and review code for power spectrum from in-ice data
 * locate Ice Top data
@@ -20,4 +20,4 @@
 * attain burn sample, run code
   *   trouble shoot where needed
 * review with McNally
-* try for more data to create plots
+* rinse and repeat with more data
