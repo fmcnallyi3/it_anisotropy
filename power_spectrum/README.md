@@ -9,6 +9,8 @@
 * acquire and review code for power spectrum from in-ice data
 * locate Ice Top data
 * edit code where needed
+* attempt running code on In-Ice data
+  * trouble shoot until code works and replicates In-Ice results
 * attempt running code on scrambled data
   *   trouble shoot until code works
 * analyze product to check if plots are good
