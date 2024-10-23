@@ -4,3 +4,6 @@
 - Process Raw Files from McNally's folder 
 - Need an update Good Run List
 - Need to create a dictionary 
+- WIll BE SPECFIC LATER
+## Will use codes such as rates.py to help 
+  
