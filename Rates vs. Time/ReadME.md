@@ -1,9 +1,13 @@
 # Welcome to the Rates Readme!!! 
   ## Goals: To plot the rates of events measured during a configuration (From IceTop's Data)
 ### Plan of Attack 
-- Process Raw Files from McNally's folder 
-- Need an update Good Run List
-- Need to create a dictionary 
-- WIll BE SPECFIC LATER
+- Copy stability tools from McNally to this folder
+- Need an updated Good Run List
+- Test the stability tools on a small data sample
+  - ROOT file processing
+  - FITS file processing
+  - Visualization
+- Process all the data
+- WILL BE SPECIFIC LATER
 ## Will use codes such as rates.py to help 
   
