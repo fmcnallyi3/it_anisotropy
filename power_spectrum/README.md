@@ -18,4 +18,3 @@
 
 ## Questions and Answers
 ### Q/A section to record possible FAQs that may arrise. 
-- Cloning from a private repo requires SSH passkeys.
