@@ -7,4 +7,5 @@
   - Stumped: Locating data used in-ice. for future, unsure whether to use level 3 or level 4 ice top data.
   - Current Idea: use level 4 data and run code from wg-cosmic-rays repo.
   - Solution: use level 3 data. look at wiki for in-ice file.
+  - Stumped: run command for aps.py, do not know what further commands the code wants.
 - Ben
