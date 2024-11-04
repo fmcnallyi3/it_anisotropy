@@ -18,7 +18,9 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 
 # How to move files:
 ## Installing Git: Helpful Links
+- https://wiki.icecube.wisc.edu/index.php/Newbies#Programming_in_IceCube
 - https://github.com/icecube/icecube.github.io/wiki/GitGuide%3AGitHub-in-IceCube
+- https://github.com/fmcnallyi3/icetop-cnn/blob/main/README.md
 - https://www.digitalocean.com/community/tutorials/how-to-contribute-to-open-source-getting-started-with-git
 - https://git-scm.com/downloads/win
 
