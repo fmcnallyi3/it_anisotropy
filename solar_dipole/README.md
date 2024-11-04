@@ -43,7 +43,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - `git push`
 ## Using GIT (not first time set-up)
 - Before doing your work (so when you log in),
-- `git pull` this updates all the code so you're working with the most recently pushed changes
+- `git pull` ; this updates all the code so you're working with the most recently pushed changes
 - Then, once you’ve made your changes to whatever files,
     - `git add [files]`
 - For example, if you want to add/stage all the files in a folder/directory, you can do git add .
