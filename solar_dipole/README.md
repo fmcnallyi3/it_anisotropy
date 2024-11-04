@@ -11,12 +11,10 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 2. 
 
 ## Plan of Attack:
-- Upload/get access to JupyterHub stuff through GitHub (use git add, git commit, git push after i ssh cobalt in vscode)
-- Print at least one map through GitHub
-- Find data (IceCube and IceTop?) through GitHub (DO NOT UPLOAD DATA TO GITHUB, but put everything else from/in jupyterhub in github)
+- Rewrite yearly/monthly codes to where they're written with "better practice"
 
 ## Questions/Concerns
-- question?
+- Ask question(s) here!
 
 # How to move files:
 ## Installing Git: Helpful Links
@@ -27,14 +25,13 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 ## How to get jupyterhub code into github:
 ### Go to command prompt:
 - `ssh cobalt`
-`ls` this is just to see where I am
-`cd IceCube/` So when you clone the online repository, it’ll clone in this specific directory
-
+- `ls` this is just to see where I am
+- `cd IceCube/` So when you clone the online repository, it’ll clone in this specific directory
 ## For first time set-up:
 ### When cloning repositories (McNally’s) and putting my own files (from JupyterHub) into the GitHub online repository, use:
 - Clone using the “ <> Code “ button and copy the HTTPS link
-- Paste this link into vscode after typing “ git clone “. Should look something like:
-- `git clone https://github.com/fmcnallyi3/it_anisotropy.git`
+- Paste this link into vscode after typing “` git clone `“. Should look something like:
+    - `git clone https://github.com/fmcnallyi3/it_anisotropy.git`
 - Now, we are going to copy all my python files from my IceCube directory into the it_anisotropy/solar_dipole folder
 ## To do this:
 - `cp -r /home/srichie/IceCube/* /home/srichie/it_anisotropy/solar_dipole/`
@@ -44,7 +41,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - `git status`
 - `git commit -m “Adding my files from JupyterHub”`
 - `git push`
-## Using GIT
+## Using GIT (not first time set-up)
 - Before doing your work (so when you log in),
 - `git pull` this updates all the code so you're working with the most recently pushed changes
 - Then, once you’ve made your changes to whatever files,
