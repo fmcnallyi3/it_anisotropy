@@ -11,4 +11,8 @@
   - Solution: run command with -h at the end.
   - Stumped: location of data files used by aps.py
   - Solution: run plotMaker.oy to find files from error message. (files found, but do not exist).
+  - Notes for making uncertainty files:
+    - ./maker.py --ebins --sys -n 10000
+    -  ./maker.py --ebins --stat -n 10000
+    - ./maker.py --ebins --iso -n 100000
 - Ben
