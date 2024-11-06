@@ -13,6 +13,11 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 ## Plan of Attack:
 - Rewrite yearly/monthly codes to where they're written with "better practice"
     - figure out why i can't push my betterpractice code
+    - figure out why May 2019 is not working
+ 
+- to figure out why i can't push my betterpractice code:
+      - move my code safely somewhere, destroy the existing it_anisotropy file that i have (because I may have made a bad personal access token), and redo my cloning/my access to it_anisotropy??
+- also follow my plan of attack in google doc
 
 ## Questions/Concerns
 - Ask question(s) here!
