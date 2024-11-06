@@ -12,6 +12,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 
 ## Plan of Attack:
 - Rewrite yearly/monthly codes to where they're written with "better practice"
+    - figure out why i can't push my betterpractice code
 
 ## Questions/Concerns
 - Ask question(s) here!
