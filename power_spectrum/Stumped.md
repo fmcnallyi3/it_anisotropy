@@ -13,6 +13,7 @@
   - Solution: run plotMaker.oy to find files from error message. (files found, but do not exist).
   - Notes for making uncertainty files:
     - ./maker.py --ebins --sys -n 10000
-    -  ./maker.py --ebins --stat -n 10000
+    - ./maker.py --ebins --stat -n 10000
     - ./maker.py --ebins --iso -n 100000
+  - replace curly braces with true paths/values from directories and plotMaker to aps.py. run aps.py
 - Ben
