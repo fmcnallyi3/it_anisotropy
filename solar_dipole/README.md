@@ -54,6 +54,8 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - `git pull` ; this updates all the code so you're working with the most recently pushed changes
 - Then, once you’ve made your changes to whatever files,
     - `git add [files]`
+    - `git mv [file] [directory]`
+    - `git rm [file]`
 - For example, if you want to add/stage all the files in a folder/directory, you can do git add .
 - You can also list files individually, like `git add file1.py file2.txt file3.jpeg`
 - Optionally, you can check which files and changes you’ve added/staged to the commit using
@@ -63,4 +65,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - The `-m` means “use message”, and it will use the next message that you type within quotation marks
 - Finally, to sync back with the internet and the online repository,
   - `git push`
+
+ ### Extra, Useful Commands
+ - `git mkdir [Name of Your New Directory]`
 
