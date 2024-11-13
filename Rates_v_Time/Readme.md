@@ -9,8 +9,14 @@
   - Visualization
 - Process all the data
 - WILL BE SPECIFIC LATER
-## Will use codes such as rates.py to help 
 ## List of Codes
--fits_extractor.py
--fits_merge.py
+- fits_extractor.py
+-- fits_extractor - 
+- fits_merge.py
+-- fits_merge - 
+- root_merge.py
+-- fits_extractor.py
+- root-submitter.py
+-- root_extractor -
+  
 
