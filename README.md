@@ -2,8 +2,6 @@
 
 This is the home directory for Mercer's contributions to the IceTop cosmic-ray anisotropy analysis (2024).
 
-TEST 123
-
 ## Files
 
 `README.md`
