@@ -11,7 +11,7 @@
 - WILL BE SPECIFIC LATER
 ## List of Codes
 - fits_extractor.py
- - fits_extractor - 
+ - <bold>fits_extractor - 
 - fits_merge.py
  - fits_merge - 
 - root_merge.py
