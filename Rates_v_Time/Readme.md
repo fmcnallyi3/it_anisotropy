@@ -11,14 +11,14 @@
 - WILL BE SPECIFIC LATER
 ## List of Codes
 - fits_extractor.py
- - **fits_extractor** - 
+   --**fits_extractor** - 
 - fits_merge.py
- - **fits_merge** - 
+   --**fits_merge** - 
 - root_merge.py
- - **root_merge**-
+   --**root_merge**-
 - root-submitter.py
-  -**root_submitter**-
+  --**root_submitter**-
 - root_extractor -
- - **root_extractor**- 
+  --**root_extractor**- 
   
 
