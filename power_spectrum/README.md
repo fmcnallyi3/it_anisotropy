@@ -18,16 +18,16 @@
 
 ## General Course of Action
  * Collecting files
-  *   pull power_spectrum files (use git pull, or git pull --rebase to ensure local changes do not get overwritten)
-  *   Alternatively, for direct access to the files go to https://github.com/icecube/wg-cosmic-rays/tree/cr_anisotropy/analyses/IC86.2011-IC86.2021_CRAnisotropy
+   *   pull power_spectrum files (use git pull, or git pull --rebase to ensure local changes do not get overwritten)
+   *   Alternatively, for direct access to the files go to https://github.com/icecube/wg-cosmic-rays/tree/cr_anisotropy/analyses/IC86.2011-IC86.2021_CRAnisotropy
  * Change files
-  *    Run mapFunctions/directories.py to set up output directory pathways (current problems include: missing files from root location)
+   *    Run mapFunctions/directories.py to set up output directory pathways (current problems include: missing files from root location)
  * Running for Angular Power Spectrum (aps)
-  *    run plotMaker.py --powerspec to run the power spectrum portion of the code.
-   *   Note: if files are "missing" invesitgate if pathways are set up with directories.py.
+   *    run plotMaker.py --powerspec to run the power spectrum portion of the code.
+    *   Note: if files are "missing" invesitgate if pathways are set up with directories.py.
  * Checking if completed
-  *   Go to /data/user/[your user]/anisotropy/figures_12yr to check for power spectrum graphs.
-   *   use ls [the above pathway] to check.
+   *   Go to /data/user/[your user]/anisotropy/figures_12yr to check for power spectrum graphs.
+    *   use ls [the above pathway] to check.
 
 ## Questions and Answers
 ### Q/A section to record possible FAQs that may arrise. 
