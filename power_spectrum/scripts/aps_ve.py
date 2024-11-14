@@ -17,9 +17,9 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
-import directories as ani
+from mapFunctions import directories as ani
 import mapFunctions.map_functions as mf
-from icesim.plots import medianEnergy
+from mapFunctions.plots import medianEnergy
 
 
 
