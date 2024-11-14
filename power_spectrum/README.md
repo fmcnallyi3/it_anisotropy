@@ -23,6 +23,7 @@
  * Change files
    *    Run mapFunctions/directories.py to set up output directory pathways (current problems include: missing files from root location)
  * Running for Angular Power Spectrum (aps)
+   *    before running any file, run cvmfs . Then run icetray .
    *    run plotMaker.py --powerspec to run the power spectrum portion of the code.
     *   Note: if files are "missing" invesitgate if pathways are set up with directories.py.
  * Checking if completed
