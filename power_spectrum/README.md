@@ -1,4 +1,4 @@
-# Plan for Power Spectrum with Ice Top
+# Plan for Power Spectrum with IceTop
  * The general plan for this project is to create Angular Power Spectra plots for data gathered from IceTop. These plots should look similar (in form) to the plots present on the 12-year Anisotropy paper, depicting a function as energy for any given spherical harmonic mode (L value).
 
 ## The following is the list of actions to accomplish the goals of this project.
