@@ -6,7 +6,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 1. instructions
 2. 
 
-## How to use Took Y:
+## How to use Tool Y:
 1. more instructions
 2. 
 
@@ -66,6 +66,13 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - Finally, to sync back with the internet and the online repository,
   - `git push`
 
+## Code not Pushing?? Try this :)
+- Create a new key
+  - When create this new token, make a default (classic) one
+  - When asked to about your "Scope Selection", ONLY select repo and save
+  
  ### Extra, Useful Commands
  - `git mkdir [Name of Your New Directory]`
+
+ - 
 
