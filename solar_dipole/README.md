@@ -1,6 +1,6 @@
 # Welcome to the Solar Dipole "Read Me" File!
 
-The `solar_dipole` folder is the repository for all things relating to IceTop and solar dipoles. Various tools can be found in this repository (tools are pending). Please use this file (or the ' #mercer ' slack channel and tag ' @anisotropy ') to ask any questions or voice any concerns; it is checked at least weekly.
+The `solar_dipole` folder is the repository for all things relating to IceTop and solar dipoles. Various tools can be found in this repository (tools are pending). Please use this file (or the ' #mercer ' slack channel and tag ' @mercer-ani ') to ask any questions or voice any concerns; it is checked at least weekly.
 
 ## How to use Tool X:
 1. instructions
@@ -11,13 +11,11 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 2. 
 
 ## Plan of Attack:
-- Rewrite yearly/monthly codes to where they're written with "better practice"
-    - figure out why i can't push my betterpractice code
-    - figure out why May 2019 is not working
- 
-- to figure out why i can't push my betterpractice code:
-      - move my code safely somewhere, destroy the existing it_anisotropy file that i have (because I may have made a bad personal access token), and redo my cloning/my access to it_anisotropy??
-- also follow my plan of attack in google doc
+- Compile/read code by year and by month (11/13-11/27 ?)
+      - see if `selectedMaps.ipynb` is good or not
+- figure out how to print homogenous banded maps
+      - why does it matter that I map sid signals and not solar signals?
+      - is `AylarHelp.ipynb` correct? i don't think it is
 
 ## Questions/Concerns
 - Ask question(s) here!
@@ -65,6 +63,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - The `-m` means “use message”, and it will use the next message that you type within quotation marks
 - Finally, to sync back with the internet and the online repository,
   - `git push`
+- If your code isn't pushing, read the section below and make sure your token is correct and that you actually did `commit -m` (step above)
 
 ## Code not Pushing?? Try this :)
 - Create a new key
@@ -73,6 +72,3 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
   
  ### Extra, Useful Commands
  - `git mkdir [Name of Your New Directory]`
-
- - 
-
