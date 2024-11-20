@@ -18,7 +18,11 @@
    - **root_merge**-
 - root-submitter.py
   - **root_submitter**-
-- root_extractor -
-  - **root_extractor**- 
+- root_extractor
+  - **root_extractor** :
+  - Opens a collection of root files (meant to be ~1 day) and
+    --calculates the number of events and livetime for each run
+ - Stores as [date - run - nevents - livetime] in a .txt file
+
   
 
