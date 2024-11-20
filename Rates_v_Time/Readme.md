@@ -38,7 +38,7 @@ In order to achevie goal, running these codes are required. The follwing codes a
 **rate_finder.py** :
  - Creates summary text files and stores rate information for each detector
    configuration
-Here is the list of requirements for 'rate_finder':
+ - Here is the list of requirements for 'rate_finder':
     - Find the location of good run list output from i3live
     - Find the location of fits summary text files
        - Will generate automatically if maps have been updated
