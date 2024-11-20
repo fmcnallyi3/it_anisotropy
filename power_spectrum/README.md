@@ -20,6 +20,8 @@
  * Collecting files
    *   pull power_spectrum files (use git pull, or git pull --rebase to ensure local changes do not get overwritten)
    *   Alternatively, for direct access to the files go to https://github.com/icecube/wg-cosmic-rays/tree/cr_anisotropy/analyses/IC86.2011-IC86.2021_CRAnisotropy
+   *   IceTop data used is located in /data/ana/CosmicRay/IceTop_level3/exp/IC86.*_pass2_v0*/{year}/{date}/Run*/Level3_IC86.*Subrun*.i3.*
+    *  stars fill in for digits in iteration.
  * Change files
    *    Run mapFunctions/directories.py to set up output directory pathways (current problems include: missing files from root location)
  * Running for Angular Power Spectrum (aps)
