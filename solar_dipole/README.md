@@ -7,14 +7,18 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - I learned a lot about GitHub this semester. There was a small learning curve with learning how to properly pull, add, commit -m, and push my code but I feel confident in it now
       - I also learned about Git Token passwords and their importance
 - I enjoyed helping Aylar with logging in with command prompt/jupyterhub/GitHub/cobalt for the first time because it challenged my basics and understanding of how everything connects. It is easy to forget all the shortcuts and things I have set up to make my code run properly
+- Making weekly/bi-monthly goals are more useful than long-term goals
+- Peer meetings are only effective if at least one other person is there to hold me accountable to go. I tend to struggle to be productive on my own unless it's the night before a research meeting
 ### Future Steps
 - I want to be able to produce a "half map" (get rid of the blank, grey section)
 - I need to write code that produces map(s) based on CALENDAR year instead of by DETECTOR year
 - I need to write code that produces map(s) based on CALENDAR month instead of by DETECTOR month
-- Figure out:
+- Regarding grid plotting...
       - WHAT is grid plotting?
       - WHY should I use grid plotting?
       - HOW to grid plot?
+- Continue to refine my coding skills (regarding notation, better practice, vocabulary, and understanding)
+      - ^ this is a good opportunity to set doable weekly goals for learning about programming
 
 ## Plan of Attack:
 - Compile/read code by year and by month (11/13-11/27 ?)
