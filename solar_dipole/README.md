@@ -6,7 +6,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 ### Reflection:
 - I learned a lot about GitHub this semester. There was a small learning curve with learning how to properly pull, add, commit -m, and push my code but I feel confident in it now
       - I also learned about Git Token passwords and their importance
-- I enjoyed helping Aylar with (attempting) to log in with command prompt/jupyterhub/GitHub/cobalt for the first time because it challenged my basics and understanding of how everything connects. It is easy to forget all the shortcuts and things I have set up to make my code run properly
+- I enjoyed helping Aylar with logging in with command prompt/jupyterhub/GitHub/cobalt for the first time because it challenged my basics and understanding of how everything connects. It is easy to forget all the shortcuts and things I have set up to make my code run properly
 ### Future Steps
 - I want to be able to produce a "half map" (get rid of the blank, grey section)
 - I need to write code that produces map(s) based on CALENDAR year instead of by DETECTOR year
