@@ -2,13 +2,13 @@
 
 The `solar_dipole` folder is the repository for all things relating to IceTop and solar dipoles. Various tools can be found in this repository (tools are pending). Please use this file (or the ' #mercer ' slack channel and tag ' @mercer-ani ') to ask any questions or voice any concerns; it is checked at least weekly.
 
-## How to use Tool X:
-1. instructions
-2. 
-
-## How to use Tool Y:
-1. more instructions
-2. 
+## SPRING 2025 Reflection and Outline for Future Steps 
+### Reflection:
+- thought
+- thought 2
+- thought 3
+### Future Steps
+- 
 
 ## Plan of Attack:
 - Compile/read code by year and by month (11/13-11/27 ?)
@@ -16,6 +16,14 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - figure out how to print homogenous banded maps
       - why does it matter that I map sid signals and not solar signals?
       - is `AylarHelp.ipynb` correct? i don't think it is
+
+## How to use Tool X:
+1. instructions
+2. 
+
+## How to use Tool Y:
+1. more instructions
+2. 
 
 ## Questions/Concerns
 - Ask question(s) here!
@@ -72,3 +80,4 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
   
  ### Extra, Useful Commands
  - `git mkdir [Name of Your New Directory]`
+ - cd ..
