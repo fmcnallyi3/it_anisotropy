@@ -14,11 +14,11 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - I need to write code that produces map(s) based on CALENDAR year instead of by DETECTOR year
 - I need to write code that produces map(s) based on CALENDAR month instead of by DETECTOR month
 - Regarding grid plotting...
-      - WHAT is grid plotting?
-      - WHY should I use grid plotting?
-      - HOW to grid plot?
+  - WHAT is grid plotting?
+  - WHY should I use grid plotting?
+  - HOW to grid plot?
 - Continue to refine my coding skills (regarding notation, better practice, vocabulary, and understanding)
-      - ^ this is a good opportunity to set doable weekly goals for learning about programming
+  - ^ this is a good opportunity to set doable weekly goals for learning about programming
 
 ## Plan of Attack:
 - Compile/read code by year and by month (11/13-11/27 ?)
