@@ -1,7 +1,7 @@
 # This is the file for plans on creating Difference Graphs
 # Reflection:
-  -Learned to use Jupyter.hub
-  -Gained access to anisotropy data
+  *Learned to use Jupyter.hub
+  *Gained access to anisotropy data
   -Logging into IceCube Email,discovering basic python source codes,
 
 # Questions to be asked:
