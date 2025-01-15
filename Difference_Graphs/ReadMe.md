@@ -1,6 +1,6 @@
 # This is the file for plans on creating Difference Graphs
 # Reflection from 2024:
--Learned to use Jupyter.hub\n
+-Learned to use Jupyter.hub
 <br>-Gained access to anisotropy data
 
 
