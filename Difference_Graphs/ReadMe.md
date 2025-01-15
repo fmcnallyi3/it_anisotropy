@@ -17,6 +17,6 @@
   <br>-Does the stored data include all 12 years between 2012-2024?
   <br>-Does the skymap need to be created for each individual year? if so, what kind of map? 
   <br>-How should the comparison between maps be performed? SHould it be a written paragraphs or visual illustrations?
-
+  <br>-Whats the difference between Jupyter and Git.hub? Which one to be used for my project?
 # Major Weakness: 
 <br> programming
