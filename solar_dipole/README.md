@@ -19,6 +19,8 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
   - HOW to grid plot?
 - Continue to refine my coding skills (regarding notation, better practice, vocabulary, and understanding)
   - ^ this is a good opportunity to set doable weekly goals for learning about programming
+- Honors Manuscript due February 24th
+  - ^ this is on my Bear Day content of 2024. Can be small updates and changes, but no major changes from that presentation to the manuscript
 
 ## Plan of Attack:
 - Compile/read code by year and by month (11/13-11/27 ?)
