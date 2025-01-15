@@ -5,8 +5,8 @@
   <br>-Logging into IceCube Email,discovering basic python source codes,
   <br>-Got to work with Savannah on basic things like how to log in, use data, and create skymaps
 
-  #Goals
-  <br> MEet with Zoe and Savannah every week once an hour
+# Goals
+  <br> MEet with Zoe and Savannah every week once a week
   <br> Work on creating 5 skymaps each week
   <br> Ask for Zoe's help to read the data 
   <br> Once all the skymaps created, start the comparison
