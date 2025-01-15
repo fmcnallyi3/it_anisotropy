@@ -1,3 +1,10 @@
 # This is the file for plans on creating Difference Graphs
 # Reflection from 2024:
--Learned about Jupyter.hub and how to create files and edit
+-Learned to use Jupyter.hub
+-Gained access to anisotropy data
+
+
+# Questions to be asked:
+-Does the stored data include all 12 years between 2012-2024?
+-Does the skymap need to be created for each individual year? if so, what kind of map? Solar dipole
+
