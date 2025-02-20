@@ -61,6 +61,8 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 - Now, we are going to copy all my python files from my IceCube directory into the it_anisotropy/solar_dipole folder
 ## To do this:
 - `cp -r /home/srichie/IceCube/* /home/srichie/it_anisotropy/solar_dipole/`
+    - `-r` means to include the contents of the folder
+    - `*` is included to execute the function **get this checked**
 - `ls #sanity check`
 - `git pull`
 - `git add .`
