@@ -2,7 +2,17 @@
 
 The `solar_dipole` folder is the repository for all things relating to IceTop and solar dipoles. Various tools can be found in this repository (tools are pending). Please use this file (or the ' #mercer ' slack channel and tag ' @mercer-ani ') to ask any questions or voice any concerns; it is checked at least weekly.
 
-## SPRING 2025 Reflection and Outline for Future Steps 
+## Spring 2025 Reflection and Outline for Future Steps 
+### Reflection:
+- This semester was more manuscript focused, so I didn't branch too much out on learning new JuptyerHub/GitHub techniques. I did not create the automated map-to-GIF code, but it was interesteing to implement it and learn how it worked!
+      - While researching for and writing the literature review, I genuinely enjoyed reading the DOM paper. For anyone that is doing more heavy lifting with analysis, that paper can provide some interesting insight.
+            - That paper could even provide inspiration for a new project/focus for an incoming research student
+- Again, peer meetings are only effective if at least one other person, although we obviously want everyone to go, is there to hold others accountable. For 75% of the peer meetings, it was just Aiden and I
+### Future Steps
+- Although I am sure Dr. McNally will guide and alter this project for the next student, I think a potential good (small) next step is to maybe produce all the maps (solar relint, sid relint, solar significance, sid significance, etc) with the gridded, half sky projection
+- A bigger step is to create the 1D projections of these maps! I'm not sure what all is necessary to create these or how in-depth these graphs would be, but I'm sure some confidence interval or normal distribution curve could be created for these projections
+
+## Fall 2025 Reflection and Outline for Future Steps 
 ### Reflection:
 - I learned a lot about GitHub this semester. There was a small learning curve with learning how to properly pull, add, commit -m, and push my code but I feel confident in it now
       - I also learned about Git Token passwords and their importance
