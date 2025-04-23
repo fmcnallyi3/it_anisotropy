@@ -302,28 +302,6 @@ if __name__ == "__main__":
         if args.powerspec:
             proc = subprocess.Popen(a.split(' '))
 
-    # Power spectrum for combined high-energy bin
-    #out = f'{ani.figs}/IC86_powerspec.{args.ext}'
-    #e_maps = hi_e.split(' ')        # hi_e defined in large-small section
-    #energies = [i for f in e_maps for i in f.split('_') if 'GeV' in i]
-    #emin = float(energies[0].split('-')[0])
-    #emax = float(energies[-1].split('-')[-1][:-8]) # Remove "GeV.fits"
-    #label = '_'.join(medianEnergy(emin, emax).split(' '))
-    # Hard-coding the energy range
-    #erange = '5.5-100GeV'
-
-    #sys = f'{ani.aps}/sys_IC86_{erange}_10000_S0.txt'
-    #stat = f'{ani.aps}/stat_IC86_{erange}_10000_S0.txt'
-    #iso = f'{ani.aps}/iso_IC86_{erange}_100000_S0.npy'
-    #e_out = out.replace('powerspec', f'powerspec_{erange}')
-
-    #a  = f'{cmd} -f {hi_e} --syserr {sys} --staterr {stat} --iso {iso}'
-    #a += f' -o {e_out} -l {label}'
-
-    #if args.powerspec:
-    #    proc = subprocess.Popen(a.split(' '))
-    
-
     # Angular power for select spherical harmonic modes
     cmd = f'{current}/powerspec/aps_ve.py'
     out = f'{ani.figs}/IC86_powerspec_vs_energy.{args.ext}'
