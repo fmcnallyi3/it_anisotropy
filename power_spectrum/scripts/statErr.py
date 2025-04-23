@@ -46,11 +46,6 @@ if __name__ == "__main__":
         bgMap = getMap(args.files, mapName='bg', mask=True, 
                 smooth=args.smooth, norm=norm)
         bgMap[bgMap==hp.UNSEEN] = 0
-        # Setup for smoothed pixels (3 degrees includes 32 neighbors)
-        #dataMap = getMap(f, mapName='data', mask=True, smooth=3)
-        #bgMap = getMap(f, mapName='bg', mask=True, smooth=3)
-        #dataMap /= 33
-        #bgMap /= 33
 
         # Normalized version of bg map used for weighting
         weight = bgMap / bgMap[bgMap!=0].mean()
