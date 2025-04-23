@@ -5,8 +5,7 @@ The `solar_dipole` folder is the repository for all things relating to IceTop an
 ## Spring 2025 Reflection and Outline for Future Steps 
 ### Reflection:
 - This semester was more manuscript focused, so I didn't branch too much out on learning new JuptyerHub/GitHub techniques. I did not create the automated map-to-GIF code, but it was interesteing to implement it and learn how it worked!
-      - While researching for and writing the literature review, I genuinely enjoyed reading the DOM paper. For anyone that is doing more heavy lifting with analysis, that paper can provide some interesting insight.
-            - That paper could even provide inspiration for a new project/focus for an incoming research student
+- While researching for and writing the literature review, I genuinely enjoyed reading the DOM paper. For anyone that is doing more heavy lifting with analysis, that paper can provide some interesting insight (plus, that paper could even provide inspiration for a new project/focus for an incoming research student!)
 - Again, peer meetings are only effective if at least one other person, although we obviously want everyone to go, is there to hold others accountable. For 75% of the peer meetings, it was just Aiden and I
 ### Future Steps
 - Although I am sure Dr. McNally will guide and alter this project for the next student, I think a potential good (small) next step is to maybe produce all the maps (solar relint, sid relint, solar significance, sid significance, etc) with the gridded, half sky projection
