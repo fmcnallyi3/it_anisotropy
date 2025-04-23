@@ -39,3 +39,4 @@
   * Use isoErr, statErr, and sysErr to produce noise bands and error bars. Use -f [path to data], -n [number of iterations], and -o [path to output].
 * Where can I find the data?
   * /data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outpute/finalcombinedfits/. There are 4 energy bins. Run the code on the latest iteration of CR_IceTop_*.
+  * If you cannot find the data, please ask!
