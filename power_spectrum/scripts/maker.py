@@ -42,12 +42,6 @@ if __name__ == "__main__":
     p.add_argument('-S', '--smooth', dest='s',
             type=float, default=0,
             help='Apply smoothing to the maps')
-    p.add_argument('--hiE', dest='hiE',
-            default=False, action='store_true',
-            help='Create plots for highest-four energy bins')
-    p.add_argument('--ebins', dest='ebins',
-            default=False, action='store_true',
-            help='Create plots for individual energy bins')
     p.add_argument('-m', '--multi', dest='multi',
             default=False, action='store_true',
             help='Include dipole-quadrupole subtracted version')
@@ -61,24 +55,9 @@ if __name__ == "__main__":
     # Establish standard paths for analysis output
     ani.setup_output_dirs(verbose=False)
 
-    # Files and labels for power spectra
-    if args.ebins:
-        files = sorted(glob(f'{ani.maps}/IC86_N10_sid_*GeV.fits'))
-        labels = [medianEnergy([f]) for f in files]
-    #elif args.hiE:
-    #    files = sorted(glob(f'{ani.maps}/IC86_N10_sid_*5.5-100GeV.fits'))
-    #    labels = [medianEnergy([f]) for f in files]
-    else:
-        files = [f'{ani.maps}/IC86_N10_sid.fits']
-        labels = ['IC86']
-
-
-    for i, f in enumerate(files):
+     for i, f in enumerate(files):
 
         sName = simplyName(f)
-        # Custom naming for high-energy bin
-        if args.hiE:
-            sName = 'IC86_5.5-100GeV'
 
         cmd = f'{current}/sysErr.py'
         sys_out = f'sys_{sName}_{args.n}_S{args.s}'
