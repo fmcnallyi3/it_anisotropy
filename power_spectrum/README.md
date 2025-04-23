@@ -35,7 +35,7 @@
 
 ## Questions and Answers
 * What to run for Angular Power Spectrum?
- * aps.py in scripts is what you want. Use -f [path to data] and -o [path to output] if you want a spectrum without noise bands and error bars. To inclue noise bands and error bars use the commands --sysErr [path to sysErr bars] --statErr [path to statErr bars] and -i [path to isotropic noise bands]
- * Use isoErr, statErr, and sysErr to produce noise bands and error bars. Use -f [path to data], -n [number of iterations], and -o [path to output].
+  * aps.py in scripts is what you want. Use -f [path to data] and -o [path to output] if you want a spectrum without noise bands and error bars. To inclue noise bands and error bars use the commands --sysErr [path to sysErr bars] --statErr [path to statErr bars] and -i [path to isotropic noise bands]
+  * Use isoErr, statErr, and sysErr to produce noise bands and error bars. Use -f [path to data], -n [number of iterations], and -o [path to output].
 * Where can I find the data?
- * /data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outpute/finalcombinedfits/. There are 4 energy bins. Run the code on the latest iteration of CR_IceTop_*.
+  * /data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outpute/finalcombinedfits/. There are 4 energy bins. Run the code on the latest iteration of CR_IceTop_*.
