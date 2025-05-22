@@ -1,6 +1,16 @@
 # Plan for Power Spectrum with IceTop
  * The general plan for this project is to create Angular Power Spectra plots for data gathered from IceTop. These plots should look similar (in form) to the plots present on the 12-year Anisotropy paper, depicting a function as energy for any given spherical harmonic mode (L value).
 
+## --- Notes from FM --- ##
+This folder is designed to tackle *one* task: the creation of angular power spectra for IceTop. With this idea in mind, please make the following changes:
+- Set the isotropic error band script to run with n = 1e6 by default
+- Set the statistical and systematic uncertainties to run with n = 1e5 by default
+- Produce all uncertainties for every Tier
+    - This task should be recorded in a way such that it is repeatable. I usually use something like `maker.py` to record the arguments used (input files, output files, n...) in cases like this
+- Produce polished plots of the angular power spectra for each Tier
+    - The above note also applies here
+- Remove **all** excess code that is not related to one of the above objectives
+
 ## The following is the list of actions to accomplish the goals of this project.
 
 * acquire and review code for power spectrum from in-ice data
