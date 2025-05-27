@@ -17,12 +17,12 @@ def setup_input_dirs(verbose=True):
     globalVals = globals().keys()
     global submitter, root, maps, cfg_maps, sim, sim_hist, aps
     submitter = '{}/submitter'.format(current)
-    root = '/data/ana/CosmicRay/Anisotropy/IceCube'
-    maps = '{}/twelve_year/maps/merged'.format(root)
+    root = '/data/ana/CosmicRay/Anisotropy/IceTop'
+    maps = '/data/user/ebastow/burn/new_fitsfiles/tier4/ITpass2_sd/reco'.format(root)
     cfg_maps = '{}/twelve_year/maps'.format(root)
     sim = '/data/user/fmcnally/anisotropy/sim'
     sim_hist = '{}/IC86_20904_hist.npy'.format(sim)
-    aps = '/data/user/fmcnally/anisotropy/powerspec'
+    aps = '/data/user/ebastow/burn_maps'
 
     # Option to print changes to global variables
     if verbose:
@@ -54,8 +54,8 @@ def setup_output_dirs(user=None, verbose=True):
     global maps_out, sim_out, figs, aps_out
     maps_out = '/data/user/{}/anisotropy/maps'.format(user)
     sim_out = '/data/user/{}/anisotropy/sim'.format(user)
-    figs    = '/data/user/{}/anisotropy/figures_12yr'.format(user)
-    aps_out = '/data/user/{}/anisotropy/powerspec'.format(user)
+    figs    = '/data/user/{}/anisotropy/powerspec'.format(user)
+    aps_out = '/data/user/{}/anisotropy/powerspec/IceTop'.format(user)
 
     # Option to print changes to global variables
     if verbose:

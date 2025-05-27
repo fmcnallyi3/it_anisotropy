@@ -18,7 +18,7 @@ def getEbins():
 def getEnergyMaps(config, ebins=getEbins()):
 
     ani.setup_input_dirs(verbose=False)
-    mapFiles = sorted(glob(f'{ani.maps}/{config}_N10_sid_*GeV.fits'))
+    mapFiles = sorted(glob(f'{ani.maps}/CR*'))
     erange = [re.search(r'_([\d\.]+)-([\d\.]+)GeV', f).groups() \
             for f in mapFiles]
     emins, emaxs = np.transpose(erange).astype(float)
@@ -273,64 +273,35 @@ if __name__ == "__main__":
     cmd = f'{current}/scripts/aps.py'
 
     # Power spectrum split by energy
-    out = f'{ani.figs}/IC86_powerspec.{args.ext}'
+    out = f'{ani.figs}/IceTop_powerspec_it.{args.ext}'
     #e_maps = [f[0] for f in getEnergyMaps('IC86')]
-    e_maps = sorted(glob(f'{ani.maps}/IC86_N10_sid_*GeV.fits'))
+    e_maps = f'{ani.maps}/reco/CR_IceTop__64_360_iteration20.fits.gz'
+    print (e_maps)
     energies = [i for f in e_maps for i in f.split('_') if 'GeV' in i]
-    energies = [i.replace('.fits', '') for i in energies]
+    energies = [i.replace('.fits.gz', '') for i in energies]
 
     first = True
     for e, m in zip(energies, e_maps):
 
-        sys = f'{ani.aps}/sys_IC86_{e}_10000_S0.txt'
-        stat = f'{ani.aps}/stat_IC86_{e}_10000_S0.txt'
-        iso = f'{ani.aps}/iso_IC86_{e}_100000_S0.npy'
-        e_out = out.replace('powerspec', f'powerspec_{e}')
-        emin, emax = e.split('-')
-        emin = float(emin)
-        emax = float(emax[:-3])     # Exclude the "GeV" from the name
-        label = '_'.join(medianEnergy(emin, emax).split(' '))
+      sys = f'{ani.aps}/sys_IC86_{e}_10000_S0.txt'
+      stat = f'{ani.aps}/stat_IC86_{e}_10000_S0.txt'
+      iso = f'{ani.aps}/iso_IC86_{e}_100000_S0.npy'
+      e_out = out.replace('powerspec', f'powerspec_{e}')
+      emin, emax = e.split('-')
+      emin = float(emin)
+      emax = float(emax[:-3])     # Exclude the "GeV" from the name
+      label = '_'.join(medianEnergy(emin, emax).split(' '))
 
-        a  = f'{cmd} -f {m} --syserr {sys} --staterr {stat} --iso {iso}'
-        a += f' -o {e_out} -l {label}'
+      a  = f'{cmd} -f {m} --syserr {sys} --staterr {stat} --iso {iso}'
+      a += f' -o {e_out} -l {label}'
 
-        # Custom behavior for all plots after the first energy bin
-        if not first:
-            a += ' --mute_iso_labels'
+         #Custom behavior for all plots after the first energy bin
+      if not first:
+        a += ' --mute_iso_labels'
         first = False
 
-        if args.powerspec:
+      if args.powerspec:
             proc = subprocess.Popen(a.split(' '))
-
-    # Power spectrum for combined high-energy bin
-    #out = f'{ani.figs}/IC86_powerspec.{args.ext}'
-    #e_maps = hi_e.split(' ')        # hi_e defined in large-small section
-    #energies = [i for f in e_maps for i in f.split('_') if 'GeV' in i]
-    #emin = float(energies[0].split('-')[0])
-    #emax = float(energies[-1].split('-')[-1][:-8]) # Remove "GeV.fits"
-    #label = '_'.join(medianEnergy(emin, emax).split(' '))
-    # Hard-coding the energy range
-    #erange = '5.5-100GeV'
-
-    #sys = f'{ani.aps}/sys_IC86_{erange}_10000_S0.txt'
-    #stat = f'{ani.aps}/stat_IC86_{erange}_10000_S0.txt'
-    #iso = f'{ani.aps}/iso_IC86_{erange}_100000_S0.npy'
-    #e_out = out.replace('powerspec', f'powerspec_{erange}')
-
-    #a  = f'{cmd} -f {hi_e} --syserr {sys} --staterr {stat} --iso {iso}'
-    #a += f' -o {e_out} -l {label}'
-
-    #if args.powerspec:
-    #    proc = subprocess.Popen(a.split(' '))
-    
-
-    # Angular power for select spherical harmonic modes
-    cmd = f'{current}/powerspec/aps_ve.py'
-    out = f'{ani.figs}/IC86_powerspec_vs_energy.{args.ext}'
-    a  = f'{cmd} -o {out} -l 20'
-    if args.powerspec_ve:
-        print(a)
-        proc = subprocess.Popen(a.split(' '))
 
     ## ==================================================================== ##
     ## Simulation
@@ -393,7 +364,7 @@ if __name__ == "__main__":
         proc = subprocess.Popen(a.split(' '))
 
     # 1D projection v. energy (sidereal only with best-fit parameters)
-    e_maps = [f[0] for f in getEnergyMaps('IC86')]
+    e_maps = [f[0] for f in getEnergyMaps([f'{ani.maps}/reco/CR_IceTop__64_360_iteration20.fits.gz'])]
     energies = [i for f in e_maps for i in f.split('_') if 'GeV' in i]
     energies = [i.replace('.fits', '') for i in energies]
     for e, m in zip(energies, e_maps):

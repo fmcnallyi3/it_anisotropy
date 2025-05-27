@@ -117,7 +117,7 @@ if __name__ == "__main__":
             x = np.arange(len(y))
 
             # Labeling
-            label = ' '.join(args.label[i].split('_'))
+            label = 'X-axis'
             if multi != False:
                 label += ' (small-scale)'
 
@@ -154,7 +154,6 @@ if __name__ == "__main__":
                                 label=fr'noise (${k}\sigma$)')]
 
     # Finish and save
-    ax.legend(handles=handles, **tparams)
     fig.tight_layout()
 
     print(f'Writing file to {args.out}')
