@@ -1,0 +1,17 @@
+Hello! Here is a collection of helpful tips and reminders for trying to...
+- plot maps
+- find maps
+- organize files
+- recalling helpful commands
+- and much more!
+
+It'll be broken up by sections so just look for heading-looking things
+
+Maps
+
+Helpful Commands
+'cd [directory name]' 
+- changes directory into whatever is specified in the brackets
+
+'cd ..'
+- changes directory to the previous one
