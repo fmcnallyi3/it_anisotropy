@@ -1,12 +1,15 @@
 This directory contains:
 
 - README.md : This file
-- aps.py : generates and plots the angular power spectrum
-- aps_ve.py : visualization of select multipole moments as a function of energy
-- isoErr.py : generates the isotropic bands
 - maker.py : wrapper script for creation of error bars or power spectra
+- aps.py : generates and plots the angular power spectrum
+  - How to run: python [code] -f [input file path] -i [isoErr path] --staterr [statErr path] --syserr [sysErr path] -o [output file path] -l [label]
+- isoErr.py : generates the isotropic bands
+  - How to run: python [code] -f [input file path] -o [output file path] (optional: -n [int amount of times to run])
 - statErr.py : generates the statistical error bars
+  - How to run: python [code] -f [input file path] -o [output file path] (optiona: -n [int amount of times to run])
 - sysErr.py : generates the systematic error bars
+  - How to run: python [code] -f [input file path] -o [output file path] (optional: -n [int amount of times to run])
 
 Instructions:
 
