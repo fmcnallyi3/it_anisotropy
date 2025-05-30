@@ -18,12 +18,14 @@ from mapFunctions.map_functions import getMap
 if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
-            description='Angular power spectrum error bar maker.')
+            description='Angular power spectrum error bar maker.'
+            eilog='To run: python [code] -f [path to input file] -o [path to output file]. -n can be set to any integer and is defaulted to 1e5')
     p.add_argument('-f', '--files', dest='files',
             nargs='+',
             help='Input filenames. Use -f flag for each set of files.')
     p.add_argument('-n', '--n', dest='n', 
-            type=int, 
+            type=int,
+            default = int(1e5),
             help='Number of simulated power spectra to generate.')
     p.add_argument('-S', '--smooth', dest='smooth',
             type=float, default=0,

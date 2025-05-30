@@ -21,7 +21,9 @@ from mapFunctions.map_functions import getMap
 if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
-            description='Creates angular power spectra.')
+            description='Creates angular power spectra.',
+            epilog='To run: python [code] -f [intput file path] -i [iso error path] --staterr [stat error path] --syserr [sys error path] -o [output file path]')
+            
     p.add_argument('-f', '--files', dest='files',
             nargs='+', action='append',
             help='Input filenames. Use -f flag for each set of files.')
