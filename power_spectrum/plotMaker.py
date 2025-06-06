@@ -61,18 +61,18 @@ if __name__ == "__main__":
     if makeError:
 
         # Make isotropic error bands
-        i = f'{current}/scripts/isoErr.py -f {m} -o {out}/isoerr{tier}'
-        subprocess.Popen(i.split(' '))
+        i = f'{current}/scripts/isoErr.py -f {m} -o {out}/isoerr{tier}' 
+        subprocess.Popen('nohup', i.split(' '))
         print('making isotropic error bands')
         
         # Make systematic error bars
         y = f'{current}/scripts/sysErr.py -f {m} -o {out}/syserr{tier}'
-        subprocess.Popen(y.split(' '))
+        subprocess.Popen('nohup', y.split(' '))
         print('making systematic error bars')
         
         # Make statistical error bars
         t = f'{current}/scripts/statErr.py -f {m} -o {out}/staterr{tier}'
-        subprocess.Popen(t.split(' '))
+        subprocess.Popen('nohup', t.split(' '))
         print('making statistical error bars')
         
         print('')

@@ -13,7 +13,7 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
-from mapFunctions.map_functions import getMap, multi_subtraction
+from map_functions import getMap, multi_subtraction
 
 if __name__ == "__main__":
 
