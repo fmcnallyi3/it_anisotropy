@@ -8,65 +8,83 @@ import os, sys
 
 current = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(current)
-from mapFunctions import directories as ani
-from mapFunctions.plots import medianEnergy
 
 if __name__ == "__main__":
 
     # General options
     p = argparse.ArgumentParser(
-            description='Updated to be a wrapper script for producing Angular Power Spectrum for IceTop.')
+            description='Updated to be a wrapper script for producing Angular Power Spectrum for IceTop.',
+            epilog = 'how to run: python [code] -f [input file path] -t [energy bin tier (1-4)] -o [ouput file path] -i [iso file] -sy [sys file] -st [stat file]')
 
-    # Analysis plots
-    p.add_argument('--powerspec', dest='powerspec',
-            default=False, action='store_true',
-            help='Power spectrum plot')
-
-
-    # Analysis review requests
-    # ...
-
-    args = p.parse_args()
-
-    # Load common input and output paths
-    ani.setup_input_dirs(verbose=False)
-    ani.setup_output_dirs(verbose=False)
+    # File paths (Update for your use)
+    p.add_argument( '-f', '--file', dest='files',
+                nargs ='+', action='append', 
+                default='/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outpute/finalcombinedfits',
+                help = 'The input file path. The default is set in a way to select tier. Please ask someone for data path if not found.')
+    p.add_argument('-t', '--tier', dest='tier',
+                   default = 't1',
+                   help = 'The energy bin tier. please type -t t# to direct to proper directory.')
+    p.add_argument('-o', '--output', dest='out',
+                   default = '/data/user/ahinners/anisotropy/powerspec/Test',
+                   help='output directory, please change default for your needs')
+    p.add_argument('-m', '--makeErr', dest='makeError',
+                   default = False,
+                   action = 'store_true',
+                   help = 'Determines whether or not to produce error bands/bars. Make sure to set output file path accordingly. False by default.
+    p.add_argument('-i', '--iso', dest='iso',
+                    nargs='+',action='append',
+                    help='Input iso error bands to apply to the APS. To produce, use isoErr.py in scripts.')
+    p.add_argument('-sy','--syserr',dest='sys',
+                   nargs='+', action='append',
+                   help='Input systematic error bars to apply to the APS. To produce, use sysErr.py in scripts.')
+    p.add_argument('-st','--staterr',dest='stat',
+                   nargs='+', action='append',
+                   help='Input statistical error bars to apply to the APS. To produce, use statErr.py in scripts.')
 
     # Power spectrum 
     # Commands for making uncertainties:
-    #   ./maker.py --ebins --sys -n 10000
-    #   ./maker.py --ebins --stat -n 10000
-    #   ./maker.py --ebins --iso -n 100000
-    cmd = f'{current}/scripts/aps.py'
-
-    # Power spectrum split by energy
-    out = f'{ani.figs}/IC86_powerspec.{args.ext}'
-
-    first = True
-    for e, m in zip(energies, e_maps):
-
-        sys = f'{ani.aps}/sys_IC86_{e}_10000_S0.txt'
-        stat = f'{ani.aps}/stat_IC86_{e}_10000_S0.txt'
-        iso = f'{ani.aps}/iso_IC86_{e}_100000_S0.npy'
-        e_out = out.replace('powerspec', f'powerspec_{e}')
-        emin, emax = e.split('-')
-        emin = float(emin)
-        emax = float(emax[:-3])     # Exclude the "GeV" from the name
-        label = '_'.join(medianEnergy(emin, emax).split(' '))
-
-        a  = f'{cmd} -f {m} --syserr {sys} --staterr {stat} --iso {iso}'
-        a += f' -o {e_out} -l {label}'
-
-        # Custom behavior for all plots after the first energy bin
-        if not first:
-            a += ' --mute_iso_labels'
-        first = False
-
-        if args.powerspec:
-            proc = subprocess.Popen(a.split(' '))
-
-print( "plots are done")
-    print("All plots have been created!")
+    #   ./maker.py --ebins --sys
+    #   ./maker.py --ebins --stat
+    #   ./maker.py --ebins --iso
 
 
+    args = p.parse_args()
 
+    # set path arguments in variables.
+    
+    file = args.files, tier = args.tier, sys = args.sys, stat = args.stat, iso = args.iso, out = ars.out
+
+    # set tier dependent file paths
+    
+    if tier == 't1':
+        m = f'{file}/t1/CR_IceTop__64_360_iteration04.fits.gz'
+        print(m)
+    else:
+        m = f'{file}/{tier}/CR_IceTop__64_360_iteration20.fits.gz'
+        print(m)
+
+    # code to make error bands/bars.
+    
+    if makeError:
+
+        # Make isotropic error bands
+        i = f'{current}/scripts/isoErr.py -f {m} -o {out}/isoerr{tier}'
+          
+        # Make systematic error bars
+        y = f'{current}/scripts/sysErr.py -f {m} -o {out}/syserr{tier}'
+    
+        # Make statistical error bars
+        t = f'{current}/scripts/statErr.py -f {m} -o {out}/staterr{tier}'
+    
+        print (f'error bands/bars save to {out}')
+        raise
+
+    else:
+        # Code to make APS
+    
+        #cmd = f'{current}/scripts/aps.py'
+    
+        #a  = f'{cmd} -f {m} --syserr {sys} --staterr {stat} --iso {iso}'
+        #a += f' -o {e_out} -l {label}'
+
+print( f'Angular power spectrum saved to {args.out}')

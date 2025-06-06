@@ -23,16 +23,12 @@ from mapFunctions.histFunctions import histMedian, histPercentile, ebin_params
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
-from mapFunctions import directories as ani
 
 def getEbins():
     return [4, 4.25, 4.5, 4.75, 5, 5.25, 5.5, 6, 6.5]
 
 
 def medianEnergy(emin, emax):
-
-    # Establish path to analysis simulation location
-    ani.setup_input_dirs(verbose=False)
 
     # Syntax is a little confused - was written to work with many ebins
     medians, sigL, sigR, var = ebin_params(ani.sim_hist, [emin, emax])
@@ -286,7 +282,6 @@ def overlap(inFile, ebins):
 if __name__ == "__main__":
 
     # Establish paths to analysis simulation location
-    ani.setup_input_dirs(verbose=False)
 
     p = argparse.ArgumentParser(
             description='Simulation plots for in-ice DST simulation')

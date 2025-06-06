@@ -45,15 +45,7 @@ if __name__ == "__main__":
     p.add_argument('-m', '--multi', dest='multi',
             default=False, action='store_true',
             help='Include dipole-quadrupole subtracted version')
-    p.add_argument('-n', '--n', dest='n',
-            default=1000,
-            help='Number of iterations for uncertainty calculations')
     args = p.parse_args()
-
-    # Establish standard paths to analysis data
-    ani.setup_input_dirs(verbose=False)
-    # Establish standard paths for analysis output
-    ani.setup_output_dirs(verbose=False)
 
      for i, f in enumerate(files):
 
