@@ -41,16 +41,9 @@ if __name__ == "__main__":
                    nargs='+', action='append',
                    help='Input statistical error bars to apply to the APS. To produce, use statErr.py in scripts.')
 
-    # Power spectrum 
-    # Commands for making uncertainties:
-    #   ./maker.py --ebins --sys
-    #   ./maker.py --ebins --stat
-    #   ./maker.py --ebins --iso
-
-
     args = p.parse_args()
 
-    # set path arguments in variables.
+    # set path argument variables.
     
     file = args.files, tier = args.tier, sys = args.sys, stat = args.stat, iso = args.iso, out = ars.out
 
@@ -62,29 +55,36 @@ if __name__ == "__main__":
     else:
         m = f'{file}/{tier}/CR_IceTop__64_360_iteration20.fits.gz'
         print(m)
-
-    # code to make error bands/bars.
     
+    # code to make error bands/bars. Default false.
+
     if makeError:
 
         # Make isotropic error bands
         i = f'{current}/scripts/isoErr.py -f {m} -o {out}/isoerr{tier}'
-          
+        subprocess.Popen(i.split(' '))
+        print('making isotropic error bands')
+        
         # Make systematic error bars
         y = f'{current}/scripts/sysErr.py -f {m} -o {out}/syserr{tier}'
-    
+        subprocess.Popen(y.split(' '))
+        print('making systematic error bars')
+        
         # Make statistical error bars
         t = f'{current}/scripts/statErr.py -f {m} -o {out}/staterr{tier}'
-    
+        subprocess.Popen(t.split(' '))
+        print('making statistical error bars')
+        
+        print('')
         print (f'error bands/bars save to {out}')
         raise
 
     else:
-        # Code to make APS
+        # Code to make Angular Power Spectrum
     
-        #cmd = f'{current}/scripts/aps.py'
+        cmd = f'{current}/scripts/aps.py'
     
-        #a  = f'{cmd} -f {m} --syserr {sys} --staterr {stat} --iso {iso}'
-        #a += f' -o {e_out} -l {label}'
-
-print( f'Angular power spectrum saved to {args.out}')
+        a  = f'{cmd} -f {m} --syserr {sys} --staterr {stat} --iso {iso}'
+        a += f' -o {out}/APS{tier} -l {label}'
+        subprocess.Popen(a.split(' '))
+        print( f'Angular power spectrum saved to {args.out}')
