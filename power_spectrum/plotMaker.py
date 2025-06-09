@@ -70,19 +70,19 @@ if __name__ == "__main__":
     if args.makeError:
 
         # Make isotropic error bands
-        cmdi = f'{current}/isoErr.py'
+        cmdi = f'{current}/scripts/isoErr.py'
         i = f'{cmdi} -f {m} -o {out}{tier}iso -n 100' 
         subprocess.Popen(i.split(), shell=True)
         print('making isotropic noise bands')
         
         # Make systematic error bars
-        cmdy = f'{current}/sysErr.py'
+        cmdy = f'{current}/scripts/sysErr.py'
         y = f'{cmdy} -f {m} -o {out}{tier}sys -n 100'
         subprocess.Popen(y.split(), shell=True)
         print('making systematic error bars')
         
         # Make statistical error bars
-        cmdt = f'{current}/statErr.py'
+        cmdt = f'{current}/scripts/statErr.py'
         t = f'{cmdt} -f {m} -o {out}{tier}stat -n 100'
         subprocess.Popen(t.split(), shell=True)
         print('making statistical error bars')
