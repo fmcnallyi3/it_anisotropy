@@ -2,19 +2,19 @@ This is an incomplete set of tools, designed to begin the rate vs time analysis
 for the 12-year IceTop anisotropy paper. It currently features the following
 items:
 
-- README.md : This file
-- count_finder.py : Calculates daily counts from map files located in Alex
+- `README.md` : This file
+- `count_finder.py` : Calculates daily counts from map files located in Alex
   McClure's output directory in /data/ana
-- directories.py : Designed to establish names for commonly-used directories
+- `directories.py` : Designed to establish names for commonly-used directories
   (location of daily maps, output destination for rate plots, etc.). INCOMPLETE
 -- has not been updated since its original use with IceCube
-- grl_tools.py : Tools for reading the good run lists from Serap and I3Live
-- livetime_test.ipynb : Jupyter notebook for playing with livetime and rate
+- `grl_tools.py` : Tools for reading the good run lists from Serap and I3Live
+- `livetime_test.ipynb` : Jupyter notebook for playing with livetime and rate
   calculations
-- maker.py : Submission script for count_finder.py
-- rate_finder.py : Designed to calculate rate on a daily basis. INCOMPLETE --
+- `maker.py` : Submission script for count_finder.py
+- `rate_finder.py` : Designed to calculate rate on a daily basis. INCOMPLETE --
   has not been updated since its original use with IceCube
-- rate_check.py : Designed to look for significant deviations from a rolling
+- `rate_check.py` : Designed to look for significant deviations from a rolling
   average rate. INCOMPLETE -- has not been updated since its original use with
 IceCube
-- submitter : Directory with cluster submission tools
+- `submitter` : Directory with cluster submission tools
