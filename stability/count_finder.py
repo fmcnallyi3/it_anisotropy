@@ -37,6 +37,9 @@ def get_counts(year, tier, test=False):
             data = hp.read_map(map_file, verbose=False)
             counts[yyyymmdd][tier] += int(data.sum())
 
+    # Don't write empty dictionaries
+    if len(counts.keys()) == 0:
+        return
 
     # Write to a file
     out_dir = '/data/user/fmcnally/icetop_12yr/stability'
