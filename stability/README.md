@@ -18,3 +18,16 @@ items:
   average rate. INCOMPLETE -- has not been updated since its original use with
 IceCube
 - `submitter` : Directory with cluster submission tools
+
+
+To-Do items for CJ:
+- `directories.py` : once the analysis paths are set for the IceTop analysis,
+  update this script to point to them (and, at least temporarily, your own
+/data/user for output) and incorporate them in place of absolute file paths in
+other scripts (like maker.py)
+- `rate_finder.py` : we are (at least initially) only interested in calculating
+  the event rate using the maps for counts and i3live for livetime.
+Move/comment out all unnecessary code and make it so this script does exactly
+that.
+- `rate_check.py` : make sure that this now runs with the output from your
+  adapted rate_finder.py and show me some plots!

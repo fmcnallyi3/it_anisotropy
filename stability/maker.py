@@ -46,23 +46,17 @@ if __name__ == "__main__":
                 #print(f'  Output file {outfile} already exists. Skipping...')
                 continue
 
-            # Collect list of all files
+            # Base name for all files
             # Last directory is sometimes ITpass2 and sometimes ITpass2_sd?
-            tier_path = f'{prefix}/tier{tier}_unblinded/ITpass2*'
-            files = sorted(glob(f'{tier_path}/{year}-*/*.fits.gz'))
+            file_base = f'{prefix}/tier{tier}_unblinded/ITpass2*/{year}-'
 
             # Some years don't have Tiers 1 and 2 (2016+)
+            files = sorted(glob(f'{file_base}*/*.fits.gz'))
             if len(files) == 0:
                 continue
 
-            # Limit number of files for test run
-            if args.test:
-                files = files[:3]
-
-            # Establish executable and jobID
             jobID = f'it_counts_{year}_Tier{tier}'
-            file_string = ' '.join(files)
-            ex = f'{cmd} -f {file_string} -o {outfile}'
+            ex = f'{cmd} -f {file_base} -o {outfile}'
 
             # Pass along environment (uses f-strings, needs python 3)
             sublines = ['getenv = True']

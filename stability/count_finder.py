@@ -6,6 +6,7 @@ import re
 import numpy as np
 import healpy as hp
 
+from glob import glob
 from collections import defaultdict
 
 
@@ -17,7 +18,6 @@ def get_counts(filelist, outfile):
     # Parse filelist for dates
     dates = [re.findall('\d{4}-\d{2}-\d{2}', f)[-1] for f in filelist]
     dates = sorted(set(dates))
-    print(dates)
 
     # Sum the counts for each day and store in dictionary
     for day in dates:
@@ -37,16 +37,19 @@ if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
             description='Calculate daily counts from IceTop fits files')
-    p.add_argument('-f', '--files', dest='files',
-            type=str, nargs='+',
-            help='Input files to run over')
+    p.add_argument('-f', '--file_base', dest='file_base',
+            type=str,
+            help='Base string for input files to run over')
     p.add_argument('-o', '--outfile', dest='outfile',
             type=str,
             help='Output file name')
     args = p.parse_args()
 
-    
-    get_counts(args.files, args.outfile)
+    # File collection here because there are too many files for argparse
+    files = sorted(glob(f'{args.file_base}*/*.fits.gz'))
+
+    # Execute
+    get_counts(files, args.outfile)
 
 
 
