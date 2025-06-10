@@ -2,6 +2,7 @@
 
 import argparse
 from pathlib import Path
+from glob import glob
 
 from submitter.pysubmit import pysubmit
 
@@ -21,27 +22,51 @@ if __name__ == "__main__":
     p.add_argument('--test', dest='test',
             default=False, action='store_true',
             help='Option for running off cluster to test')
+    p.add_argument('--overwrite', dest='overwrite',
+            default=False, action='store_true',
+            help='Overwrite existing counts files')
     args = p.parse_args()
 
     # Get the absolute path to current directory
     script_path = Path(__file__).resolve()
     script_dir = script_path.parent
-
     cmd = f'{script_dir}/count_finder.py'
 
+    # Data locations (temporary)
+    prefix = '/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outputa'
+    outdir = '/data/user/fmcnally/icetop_12yr/stability'
+
     for year in args.year:
+
         for tier in args.tier:
+
+            # Check for existing outfile
+            outfile = f'{outdir}/counts_{year}_Tier{tier}.json'
+            if Path(outfile).exists() and not args.overwrite:
+                #print(f'  Output file {outfile} already exists. Skipping...')
+                continue
+
+            # Collect list of all files
+            # Last directory is sometimes ITpass2 and sometimes ITpass2_sd?
+            tier_path = f'{prefix}/tier{tier}_unblinded/ITpass2*'
+            files = sorted(glob(f'{tier_path}/{year}-*/*.fits.gz'))
+
+            # Some years don't have Tiers 1 and 2 (2016+)
+            if len(files) == 0:
+                continue
+
+            # Limit number of files for test run
+            if args.test:
+                files = files[:3]
 
             # Establish executable and jobID
             jobID = f'it_counts_{year}_Tier{tier}'
-            ex = f'{cmd} -t {tier} -y {year}'
-            if args.test:
-                ex = f'{ex} --test'
+            file_string = ' '.join(files)
+            ex = f'{cmd} -f {file_string} -o {outfile}'
 
             # Pass along environment (uses f-strings, needs python 3)
             sublines = ['getenv = True']
 
             # Submit
-            print(ex)
             pysubmit(ex, test=args.test, jobID=jobID, sublines=sublines)
 
