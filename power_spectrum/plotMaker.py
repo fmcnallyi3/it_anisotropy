@@ -72,18 +72,21 @@ if __name__ == "__main__":
         # Make isotropic error bands
         cmdi = f'{current}/scripts/isoErr.py'
         i = f'{cmdi} -f {m} -o {out}{tier}iso -n 100' 
+        print(i)
         subprocess.Popen(i.split(), shell=True)
         print('making isotropic noise bands')
         
         # Make systematic error bars
         cmdy = f'{current}/scripts/sysErr.py'
         y = f'{cmdy} -f {m} -o {out}{tier}sys -n 100'
+        print(y)
         subprocess.Popen(y.split(), shell=True)
         print('making systematic error bars')
         
         # Make statistical error bars
         cmdt = f'{current}/scripts/statErr.py'
         t = f'{cmdt} -f {m} -o {out}{tier}stat -n 100'
+        print(t)
         subprocess.Popen(t.split(), shell=True)
         print('making statistical error bars')
         
@@ -94,7 +97,7 @@ if __name__ == "__main__":
         # Code to make Angular Power Spectrum
     
         cmd = f'{current}/aps.py'
-        iso = f'{data}/{tier}/
+        iso = f'{data}/{tier}/'
     
         a  = f'{cmd} -f {m} -sy {sys} -st {stat} -i {iso}'
         a += f' -o {out}/APS{tier} -l {label}'
