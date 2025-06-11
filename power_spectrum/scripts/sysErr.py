@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
             description='Angular power spectrum error bar maker.',
-            eilog='To run: python [code] -f [path to input file] -o [path to output file]. -n can be set to any integer and is defaulted to 1e5')
+            epilog='To run: python [code] -f [path to input file] -o [path to output file]. -n can be set to any integer and is defaulted to 1e5')
     p.add_argument('-f', '--files', dest='files',
             nargs='+',
             help='Input filenames. Use -f flag for each set of files.')

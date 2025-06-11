@@ -34,13 +34,17 @@ if __name__ == "__main__":
 
     args = p.parse_args()
 
+    print('isoErr.py inFile is: ')
+    print(args.files)
+    print('isoErr.py inFiles type')
+    print(type(args.files))
 
     # Avoid boosted counts if top-hat smoothing applied
     norm = True if args.smooth!=0 else False
 
     # Background map should represent detector response to isotropic sky
-    bgMap = getMap(args.files, mapName='bg', mask=True,
-            smooth=args.smooth, norm=norm)
+    bgMap = getMap(args.files, mapName='bg', mask=True, 
+                   smooth=args.smooth, norm=norm)
     bgMap[bgMap==hp.UNSEEN] = 0
     #bgMap /= 33
 

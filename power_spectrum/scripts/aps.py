@@ -32,10 +32,10 @@ if __name__ == "__main__":
     p.add_argument('-l', '--label', dest='label',
             nargs = '+',
             help ='Labels for plot legend')
-    p.add_argument('--syserr', dest='syserr',
+    p.add_argument('-sy', '--syserr', dest='syserr',
             nargs='+', action ='append',
             help ='Input error bar files from sysErr.py')
-    p.add_argument('--staterr', dest='staterr',
+    p.add_argument('-st', '--staterr', dest='staterr',
             nargs='+', action ='append',
             help ='Input error bar files from statErr.py')
     p.add_argument('-m', '--multi', dest='multi',
