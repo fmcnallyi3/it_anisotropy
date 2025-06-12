@@ -99,9 +99,16 @@ if __name__ == "__main__":
         sys = f'{args.out}/t{args.tier}sys.txt'
         stat = f'{args.out}/t{args.tier}stat.txt'
 
-        if iso and sys and stat in args.out:
-            a  = f'{cmd} -f {f} -sy {sys} -st {stat} -i {iso}'
-            a += f' -o {args.out}/APST{args.tier}S{args.smooth} -l {args.label}'
+        if iso or sys or stat in args.out:
+            a  = f'{cmd} -f {f} '
+            
+            if iso in args.out:
+               a+= f'-i {iso} '
+            if sys in args.out:
+                a+= f'-sy {sys} '
+            if stat in args.out:
+                a+= f'-st {stat} '
+            a += f'-s {args.smooth} -o {args.out}/APST{args.tier}S{args.smooth} -l {args.label}'
 
         else:
             print('There are no uncertainties here, making angular power spectrum.')

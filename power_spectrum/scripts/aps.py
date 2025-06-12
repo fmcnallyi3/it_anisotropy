@@ -41,7 +41,7 @@ if __name__ == "__main__":
     p.add_argument('-m', '--multi', dest='multi',
             default=False, action='store_true',
             help='Set to also show data w/ \ell=2 multipole subtraction')
-    p.add_argument('-S', '--smooth', dest='smooth',
+    p.add_argument('-s', '--smooth', dest='smooth',
             type=float, default=0,
             help='Smooth data and background maps')
     p.add_argument('-i', '--iso', dest='iso',
