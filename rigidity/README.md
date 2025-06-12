@@ -9,14 +9,11 @@ anisotropy studies. The end goal should include the following:
 
 To accomplish this, we should create a notebook that does all of this; it takes
 the number of events for each composition in an energy bin, divides that by the
-total number of events in that bin, and outputs the result to a table; that takes
+total number of events in that bin, and outputs the result to a table; it takes
 the natural log of the atomic number of the particle event in an energy bin, and
-outputs the result to the table; that takes the energy and divides it by the
+outputs the result to the table; it takes the energy and divides it by the
 charge of the particle of an event in an energy bin, and oputs the result to the
 table.
-
-This folder should eventually be incorporated into the IceTop anisotropy
-repository, as created and maintained by Loyola
 
 Files include:
 - README.md: this file
