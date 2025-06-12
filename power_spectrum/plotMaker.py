@@ -3,7 +3,7 @@
 
 import argparse
 import subprocess
-import os
+import os, glob, pathlib
 
 current = os.path.dirname(os.path.realpath(__file__))
 
@@ -12,16 +12,15 @@ if __name__ == "__main__":
     # General options
     p = argparse.ArgumentParser(
             description='Wrapper script for producing Angular Power Spectrum for IceTop.',
-            epilog = 'How to run: python [code] -f [input file path] -t [energy bin tier (1-4)] -o [ouput file path] -l [plot labels] -S [smoothing angle]. Use -m to make the uncertainty files (make these first).')
+            epilog = 'How to run: python [code] -f [input file path] -t t[energy bin tier (1-4)] -o [ouput file path] -l [plot labels] -s [smoothing angle]. Use -m to make the uncertainty files, use -i, -st, or -sy to specify which uncertainty to make. use -n to iterate the uncertainties (more iterations -> better stats).')
 
     # File paths (Update for your use)
-    p.add_argument( '-f', '--file', dest='files',
-                nargs ='+', action='append',
+    p.add_argument( '-f', '--inFile', dest='inFiles',
                 default='/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outpute/finalcombinedfits',
                 help = 'The input file path. The default is set in a way to select tier. Please ask someone for data path if not found.')
     p.add_argument('-t', '--tier', dest='tier',
-                   default = 't1',
-                   help = 'The energy bin tier. please type -t t# to direct to proper directory. default t1.')
+                   default = '1',
+                   help = 'The energy bin tier. please type -t # to direct to proper directory. default 1.')
     p.add_argument('-o', '--output', dest='out',
                    default = '/data/user/ahinners/anisotropy/powerspec/Test',
                    help='output directory, please change default for your needs')
@@ -29,15 +28,24 @@ if __name__ == "__main__":
                    default = False,
                    action = 'store_true',
                    help = 'Determines whether or not to produce error bands/bars. May take a long time to complete. False by default.')
-    p.add_argument('-nI', dest='nI',
+    p.add_argument('-n', dest='n',
                    type=int,
-                   help='How many times do you want to iterate the isotropic noise bands? default is 1e6.')
-    p.add_argument('-nS', dest='nS',
-                   type=int,
-                   help='How many times do you want to iterate the systematic/statistical error bars? default is 1e5')
-    p.add_argument('-S', '--smooth', dest='smooth',
-                   type=float, default=0,
-                   help='Smooth data and background maps.')
+                   help='Determines how many times the uncertainty iterates. Default iso = 1e6, default sys/stat = 1e5.')
+    p.add_argument('-i', '--iso', dest='iso',
+                   default = False,
+                   action = 'store_true',
+                   help = 'Makes the isotropic noise bands')
+    p.add_argument('-sy', '--sysErr', dest = 'sys',
+                   default = False,
+                   action = 'store_true',
+                   help = 'Makes the systematic error bars.')
+    p.add_argument('-st','--statErr',dest = 'stat',
+                   default = False,
+                   action = 'store_true',
+                   help = 'Makes the statistical error bars.')
+    p.add_argument('-s', '--smooth', dest='smooth',
+                   type = float, default = 0,
+                   help = 'Smooth data and background maps.')
     p.add_argument('-l', '--label', dest='label',
                    nargs='+',
                    help='Sets the label for the plot legend.')
@@ -45,51 +53,40 @@ if __name__ == "__main__":
 
     args = p.parse_args()
 
-    # set path argument variables.
+    # find the final iteration for our tier
 
-    file = args.files
-    tier = args.tier
-    smooth = args.smooth
-    label = args.label
-    out = args.out
-
-    # set tier dependent file paths
-
-    if tier == 't1':
-        f = f'{file}/t1/CR_IceTop__64_360_iteration04.fits.gz'
-    else:
-        f = f'{file}/{tier}/CR_IceTop__64_360_iteration20.fits.gz'
+    file_list = sorted(glob.glob(f'{args.inFiles}/t{args.tier}/CR_IceTop__64_360_iteration*'))
+    f = file_list[-1]
 
     # code to make error bands/bars. Default false.
 
     if args.makeError:
 
         # Make isotropic error bands
-        cmdi = f'{current}/scripts/isoErr.py'
-        i = f'{cmdi} -f {f} -s {smooth} -o {args.out}/{args.tier}iso' 
+        cmd = f'{current}/scripts/isoErr.py'
+        a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/{args.tier}iso' 
 
         if args.iso:
-            subprocess.Popen(i.split(' '))
+            subprocess.Popen(a.split(' '))
             print('making isotropic noise bands')
         
         # Make systematic error bars
-        cmdy = f'{current}/scripts/sysErr.py'
-        y = f'{cmdy} -f {f} -s {smooth} -o {out}/{tier}sys'
+        cmd = f'{current}/scripts/sysErr.py'
+        a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/{tier}sys'
 
         if args.sys:
-            subprocess.Popen(y.split(' '))
+            subprocess.Popen(a.split(' '))
             print('making systematic error bars')
         
         # Make statistical error bars
-        cmdt = f'{current}/scripts/statErr.py'
-        t = f'{cmdt} -f {f} -s {smooth} -o {out}/{tier}stat -n 100'
+        cmd = f'{current}/scripts/statErr.py'
+        a = f'{cmd} -f {f} -n {n.args} -s {args.smooth} -o {args.out}/{tier}stat'
 
         if args.stat:
-            subprocess.Popen(t.split(' '))
+            subprocess.Popen(a.split(' '))
             print('making statistical error bars')
         
-        print('')
-        print(f'The error bands/bars were saved to {out}')
+        print(f'The uncertainties were saved to {args.out}')
 
     else:
         # Code to make Angular Power Spectrum
@@ -97,13 +94,19 @@ if __name__ == "__main__":
         cmd = f'{current}/scripts/aps.py'
 
         # set arguments for uncertainty files (the out directory is where the files are too)
-        iso = f'{out}/{tier}iso.npy'
-        sys = f'{out}/{tier}sys.txt'
-        stat = f'{out}/{tier}stat.txt'
+        iso = f'{args.out}/t{args.tier}iso.npy'
+        sys = f'{args.out}/t{args.tier}sys.txt'
+        stat = f'{args.out}/t{args.tier}stat.txt'
 
-        if
-        a  = f'{cmd} -f {f} -sy {sys} -st {stat} -i {iso}'
-        a += f' -o {out}/APS{tier} -l {label}'
+        if iso and sys and stat in args.out:
+            a  = f'{cmd} -f {f} -sy {sys} -st {stat} -i {iso}'
+            a += f' -o {args.out}/APST{args.tier}S{args.smooth} -l {args.label}'
+
+        else:
+            print('There are no uncertainties here, making angular power spectrum.')
+            a = f'{cmd} -f {f}'
+            a += f' -o {args.out}/APS{args.tier}S{args.smooth} -l {args.label}'
         
         subprocess.Popen(a.split(' '))
+        
         print(f'Angular power spectrum saved to {args.out}')
