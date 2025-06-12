@@ -66,28 +66,28 @@ if __name__ == "__main__":
 
         # Make isotropic error bands
         cmdi = f'{current}/scripts/isoErr.py'
-        i = f'{cmdi} -f {f} -S {smooth} -o {args.out}/{args.tier}iso'
+        i = f'{cmdi} -f {f} -s {smooth} -o {args.out}/{args.tier}iso' 
 
-        print(i.split())
-        print(type(i[2].split()))
-
-        subprocess.Popen(i.split(' '))
-        print('making isotropic noise bands')
-
+        if args.iso:
+            subprocess.Popen(i.split(' '))
+            print('making isotropic noise bands')
+        
         # Make systematic error bars
         cmdy = f'{current}/scripts/sysErr.py'
-        y = f'{cmdy} -f {f} -S {smooth} -o {out}/{tier}sys'
-        #print(y)
-        subprocess.Popen(y.split(' '))
-        print('making systematic error bars')
+        y = f'{cmdy} -f {f} -s {smooth} -o {out}/{tier}sys'
 
+        if args.sys:
+            subprocess.Popen(y.split(' '))
+            print('making systematic error bars')
+        
         # Make statistical error bars
         cmdt = f'{current}/scripts/statErr.py'
-        t = f'{cmdt} -f {f} -S {smooth} -o {out}/{tier}stat -n 100'
-        #print(t)
-        subprocess.Popen(t.split(' '))
-        print('making statistical error bars')
+        t = f'{cmdt} -f {f} -s {smooth} -o {out}/{tier}stat -n 100'
 
+        if args.stat:
+            subprocess.Popen(t.split(' '))
+            print('making statistical error bars')
+        
         print('')
         print(f'The error bands/bars were saved to {out}')
 
@@ -101,7 +101,9 @@ if __name__ == "__main__":
         sys = f'{out}/{tier}sys.txt'
         stat = f'{out}/{tier}stat.txt'
 
+        if
         a  = f'{cmd} -f {f} -sy {sys} -st {stat} -i {iso}'
         a += f' -o {out}/APS{tier} -l {label}'
+        
         subprocess.Popen(a.split(' '))
         print(f'Angular power spectrum saved to {args.out}')

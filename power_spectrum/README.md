@@ -43,6 +43,21 @@ This folder is designed to tackle *one* task: the creation of angular power spec
    *   Go to /data/user/[your user]/anisotropy/figures_12yr to check for power spectrum graphs.
     *   use ls [the above pathway] to check.
 
+## Scripts in This Folder
+
+- plotMaker.py : wrapper script that can generate both the uncertainties and the angular power spectrum with simplified commands.
+  - How to run: python [code] -f [input file path] -t t# -o [output file path] (recommended first run: -m to make the uncertainties.)
+  - input and output file paths have set defualts, change these for your needs.
+- aps.py : generates and plots the angular power spectrum
+  - How to run: python [code] -f [input file path] -i [isoErr path] --staterr [statErr path] --syserr [sysErr path] -o [output file path] -l [label]
+- isoErr.py : generates the isotropic bands
+  - How to run: python [code] -f [input file path] -o [output file path] (optional: -n [int amount of times to run])
+- statErr.py : generates the statistical error bars
+  - How to run: python [code] -f [input file path] -o [output file path] (optiona: -n [int amount of times to run])
+- sysErr.py : generates the systematic error bars
+  - How to run: python [code] -f [input file path] -o [output file path] (optional: -n [int amount of times to run])
+- map_functions.py: contains functions used in the above files for plot creation.
+
 ## Questions and Answers
 * What to run for Angular Power Spectrum?
   * aps.py in scripts is what you want. Use -f [path to data] and -o [path to output] if you want a spectrum without noise bands and error bars. To inclue noise bands and error bars use the commands --sysErr [path to sysErr bars] --statErr [path to statErr bars] and -i [path to isotropic noise bands]

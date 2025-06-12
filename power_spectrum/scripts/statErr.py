@@ -27,7 +27,7 @@ if __name__ == "__main__":
             type=int,
             default = int(1e5),
             help='Number of simulated power spectra to generate.')
-    p.add_argument('-S', '--smooth', dest='smooth',
+    p.add_argument('-s', '--smooth', dest='smooth',
             type=float, default=0,
             help='Smooth data and background maps')
     p.add_argument('-o', '--out', dest='out',

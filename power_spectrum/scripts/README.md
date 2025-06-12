@@ -1,7 +1,5 @@
 This directory contains:
 
-- README.md : This file
-- maker.py : wrapper script for creation of error bars or power spectra
 - aps.py : generates and plots the angular power spectrum
   - How to run: python [code] -f [input file path] -i [isoErr path] --staterr [statErr path] --syserr [sysErr path] -o [output file path] -l [label]
 - isoErr.py : generates the isotropic bands
@@ -13,7 +11,6 @@ This directory contains:
 
 Instructions:
 
-- Use maker.py to generate all uncertainties for both the all-data and the energy-split maps
 - Production of the desired power spectra can be done using plotMaker.py (at the
   parent level) or aps.py | aps_ve.py
 
