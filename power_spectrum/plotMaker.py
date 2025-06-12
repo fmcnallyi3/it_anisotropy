@@ -3,9 +3,10 @@
 
 import argparse
 import subprocess
-import os, glob, pathlib
+import glob
+from pathlib import Path
 
-current = os.path.dirname(os.path.realpath(__file__))
+current = Path.cwd()
 
 if __name__ == "__main__":
 
