@@ -82,8 +82,9 @@ if __name__ == "__main__":
     if args.stat:
         subprocess.Popen(a.split(' '))
         print('making statistical error bars')
-    
-    print(f'The uncertainties were saved to {args.out}')
+
+    if (args.iso or args.sys or args.stat):
+        print(f'The uncertainties were saved to {args.out}')
 
     # Code to make Angular Power Spectrum
     if args.make:
