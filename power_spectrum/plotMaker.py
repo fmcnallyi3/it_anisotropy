@@ -25,11 +25,11 @@ if __name__ == "__main__":
     p.add_argument('-o', '--output', dest='out',
                    default = '/data/user/ahinners/anisotropy/powerspec/Test',
                    help='output directory, please change default for your needs')
-    p.add_argument('-m', '--makeErr', dest='makeError',
+    p.add_argument('-m', '--make', dest='make',
                    default = False,
                    action = 'store_true',
-                   help = 'Determines whether or not to produce error bands/bars. May take a long time to complete. False by default.')
-    p.add_argument('-n', dest='n',
+                   help = 'Determines whether or not to produce the angular power spectrum.')
+    p.add_argument('-n','--n', dest='n',
                    type=int,
                    help='Determines how many times the uncertainty iterates. Default iso = 1e6, default sys/stat = 1e5.')
     p.add_argument('-i', '--iso', dest='iso',
@@ -59,62 +59,51 @@ if __name__ == "__main__":
     file_list = sorted(glob.glob(f'{args.inFiles}/t{args.tier}/CR_IceTop__64_360_iteration*'))
     f = file_list[-1]
 
-    # code to make error bands/bars. Default false.
+    # Make isotropic error bands
+    cmd = f'{current}/scripts/isoErr.py'
+    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/t{args.tier}iso' 
 
-    if args.makeError:
-
-        # Make isotropic error bands
-        cmd = f'{current}/scripts/isoErr.py'
-        a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/{args.tier}iso' 
-
-        if args.iso:
-            subprocess.Popen(a.split(' '))
-            print('making isotropic noise bands')
-        
-        # Make systematic error bars
-        cmd = f'{current}/scripts/sysErr.py'
-        a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/{tier}sys'
-
-        if args.sys:
-            subprocess.Popen(a.split(' '))
-            print('making systematic error bars')
-        
-        # Make statistical error bars
-        cmd = f'{current}/scripts/statErr.py'
-        a = f'{cmd} -f {f} -n {n.args} -s {args.smooth} -o {args.out}/{tier}stat'
-
-        if args.stat:
-            subprocess.Popen(a.split(' '))
-            print('making statistical error bars')
-        
-        print(f'The uncertainties were saved to {args.out}')
-
-    else:
-        # Code to make Angular Power Spectrum
-
-        cmd = f'{current}/scripts/aps.py'
-
-        # set arguments for uncertainty files (the out directory is where the files are too)
-        iso = f'{args.out}/t{args.tier}iso.npy'
-        sys = f'{args.out}/t{args.tier}sys.txt'
-        stat = f'{args.out}/t{args.tier}stat.txt'
-
-        if iso or sys or stat in args.out:
-            a  = f'{cmd} -f {f} '
-            
-            if iso in args.out:
-               a+= f'-i {iso} '
-            if sys in args.out:
-                a+= f'-sy {sys} '
-            if stat in args.out:
-                a+= f'-st {stat} '
-            a += f'-s {args.smooth} -o {args.out}/APST{args.tier}S{args.smooth} -l {args.label}'
-
-        else:
-            print('There are no uncertainties here, making angular power spectrum.')
-            a = f'{cmd} -f {f}'
-            a += f' -o {args.out}/APS{args.tier}S{args.smooth} -l {args.label}'
-        
+    if args.iso:
         subprocess.Popen(a.split(' '))
-        
+        print('making isotropic noise bands')
+    
+    # Make systematic error bars
+    cmd = f'{current}/scripts/sysErr.py'
+    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/t{args.tier}sys'
+
+    if args.sys:
+        subprocess.Popen(a.split(' '))
+        print('making systematic error bars')
+    
+    # Make statistical error bars
+    cmd = f'{current}/scripts/statErr.py'
+    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/t{args.tier}stat'
+
+    if args.stat:
+        subprocess.Popen(a.split(' '))
+        print('making statistical error bars')
+    
+    print(f'The uncertainties were saved to {args.out}')
+
+    # Code to make Angular Power Spectrum
+    if args.make:
+        cmd = f'{current}/scripts/aps.py'
+    
+        # set arguments for uncertainty files (the out directory is where the files are too)
+        iso_file = Path(f'{args.out}/t{args.tier}iso.npy')
+        sys_file = Path(f'{args.out}/t{args.tier}sys.txt')
+        stat_file = Path(f'{args.out}/t{args.tier}stat.txt')
+    
+        a  = f'{cmd} -f {f} '
+        if iso_file.is_file():
+            a += f'-i {iso_file} '
+        if sys_file.is_file():
+            a += f'-sy {sys_file} '
+        if stat_file.is_file():
+            a += f'-st {stat_file} '
+    
+        a += f'-s {args.smooth} -o {args.out}/APS_T{args.tier}_S{args.smooth} -l {args.label}'
+        #print(a.split(' '))
+        subprocess.Popen(a.split(' '))
+    
         print(f'Angular power spectrum saved to {args.out}')
