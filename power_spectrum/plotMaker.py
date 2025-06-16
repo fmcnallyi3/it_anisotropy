@@ -94,7 +94,9 @@ if __name__ == "__main__":
         iso_file = Path(f'{args.out}/t{args.tier}iso.npy')
         sys_file = Path(f'{args.out}/t{args.tier}sys.txt')
         stat_file = Path(f'{args.out}/t{args.tier}stat.txt')
-    
+
+
+        # Check if an uncertainty file is present, if it is, add it to the graph
         a  = f'{cmd} -f {f} '
         if iso_file.is_file():
             a += f'-i {iso_file} '
@@ -104,7 +106,6 @@ if __name__ == "__main__":
             a += f'-st {stat_file} '
     
         a += f'-s {args.smooth} -o {args.out}/APS_T{args.tier}_S{args.smooth} -l {args.label}'
-        #print(a.split(' '))
         subprocess.Popen(a.split(' '))
     
         print(f'Angular power spectrum saved to {args.out}')
