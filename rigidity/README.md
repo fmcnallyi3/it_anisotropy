@@ -13,7 +13,5 @@ repository, as created and maintained by Loyola
 
 Files include:
 - README.md: this file
-- it_comp.py: starter script for looking at IceTop composition
-- it_comp.ipynb: an attempt to do these steps with a jupyter notebook. Fails
-  because the kernel doesn't have access to simweights and I haven't spent the
-time figuring out how to set it up
+- it_comp.ipynb: starter notebook for looking at IceTop composition.
+- IceTop_partial_comp_dict.ipynb: general notebook for looking at IceTop fractional compositions.
