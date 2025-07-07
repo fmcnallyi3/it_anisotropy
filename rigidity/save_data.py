@@ -29,21 +29,35 @@ def main(args):
         
         elif args.model == 'SIBYLL2.3':            
             file_list = glob(dir_base + 'Fe/12633_v1s' + dir_end) + glob(dir_base + 'p/12632_v1s' + dir_end)
+        
+        else:
+            # Error case: user inputs undefined model
+            print('No data for that model. Add the directory for that model first!')
 
     elif args.year == 2015:    
         file_list = glob(dir_base + 'Fe/20180_v1s' + dir_end) + glob(dir_base + 'He/20178_v1s' + dir_end) + glob(dir_base + 'O/20179_v1s' + dir_end) + glob(dir_base + 'p/20174_v1s' + dir_end)
 
     # 2018 is a little quirky, so it needs to be treated differently
     elif args.year == 2018:
+        # Files of energy decade less than 5.1 do not have necessary columns
         if args.model == 'EPOS-LHC':
             file_list = []
             for i in range(51, 69):
                 file_list += glob(dir_base + 'Fe/23201_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'He/23199_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'O/23200_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'p/23198_v3' + f'/h5files/*E{i/10}*.h5')
         
+        # Files of energy decade less than 4.8 do not have necessary columns
         elif args.model == 'SIBYLL2.3d':
             file_list = []
             for i in range(48, 79):
                 file_list += glob(dir_base + 'Fe_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'He_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'O_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'p_allE_links_v3' + f'/h5files/*E{i/10}*.h5')
+        
+        else:
+            # Error case: user inputs undefined model
+            print('No data for that model. Add the directory for that model first!')
+
+    else:
+        # Error case: user inputs undefined year
+        print('No data for that year. Add the directory for that year and model first!')
 
     # Set up the weighter
     weighter = None
@@ -72,7 +86,7 @@ def main(args):
         'IceTopHLCSeedRTPulses_SnowUnAttenuated_info': ['nstrings'],
         'IT73AnalysisIceTopQualityCuts': ['IceTop_reco_succeeded']
     }
-
+    
     # Save data from DATA
     for row, sets in DATA.items():
         for column in sets:
@@ -100,6 +114,10 @@ def main(args):
         print('Saved!')
     else:
         print('File already exists, skipping')
+    
+    # Close the weighter and finish up
+    file_obj.close()
+    print('Finished!')
 
 if __name__ == '__main__':
     # Define the arguments for the file
