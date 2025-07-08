@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Requires cvmfs
 import os, sys, tables, argparse
 
@@ -17,6 +18,8 @@ def main(args):
     # Match the year and simulation to a list of files - if-elif statements because default cvmfs does not support match-case statements
     # If you want to add a year or simulation, add an (el)if args.year == <year>: line, then if an args.model == <model>: line, and then
     # a line file_list = glob(<Fe_directory>) + glob(<He_directory>) + glob(<O_directory>) + glob(<p_directory>)
+    file_list = None
+
     if args.year == 2012:
         if args.model == 'EPOS-LHC':
             file_list = glob(dir_base + 'Fe/12635_v1s' + dir_end) + glob(dir_base + 'p/12634_v1s' + dir_end)
@@ -30,9 +33,13 @@ def main(args):
         elif args.model == 'SIBYLL2.3':            
             file_list = glob(dir_base + 'Fe/12633_v1s' + dir_end) + glob(dir_base + 'p/12632_v1s' + dir_end)
         
+        elif args.model == 'QGSJET-II-04':
+            file_list = glob(dir_base + 'Fe/12637_v1s' + dir_end) + glob(dir_base + 'p/12636_v1s' + dir_end)
+
         else:
             # Error case: user inputs undefined model
             print('No data for that model. Add the directory for that model first!')
+            quit()
 
     elif args.year == 2015:    
         file_list = glob(dir_base + 'Fe/20180_v1s' + dir_end) + glob(dir_base + 'He/20178_v1s' + dir_end) + glob(dir_base + 'O/20179_v1s' + dir_end) + glob(dir_base + 'p/20174_v1s' + dir_end)
@@ -51,13 +58,21 @@ def main(args):
             for i in range(48, 79):
                 file_list += glob(dir_base + 'Fe_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'He_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'O_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'p_allE_links_v3' + f'/h5files/*E{i/10}*.h5')
         
+        elif args.model == 'QGSJET-II-04':
+            file_list = glob(dir_base + 'Fe/23126_v3' + dir_end) + glob(dir_base + 'He/23124_v3' + dir_end) + glob(dir_base + 'O/23125_v3' + dir_end) + glob(dir_base + 'p/23116_v3' + dir_end)
+            print(dir_base + 'Fe/23126_v3' + dir_end)
+            print(dir_base + 'He/23124_v3' + dir_end)
+            print(dir_base + 'O/23125_v3' + dir_end)
+            print(dir_base + 'p/23116_v3' + dir_end)
         else:
             # Error case: user inputs undefined model
             print('No data for that model. Add the directory for that model first!')
+            quit()
 
     else:
         # Error case: user inputs undefined year
         print('No data for that year. Add the directory for that year and model first!')
+        quit()
 
     # Set up the weighter
     weighter = None
@@ -82,7 +97,7 @@ def main(args):
     # Set up a dictionary for harvesting data - weights are harvested seperately
     # If you need more data, add it here
     DATA = {
-        'MCPrimary': ['energy', 'type', 'zenith'],
+        'MCPrimary': ['energy', 'type'],
         'IceTopHLCSeedRTPulses_SnowUnAttenuated_info': ['nstrings'],
         'IT73AnalysisIceTopQualityCuts': ['IceTop_reco_succeeded']
     }
@@ -91,11 +106,31 @@ def main(args):
     for row, sets in DATA.items():
         for column in sets:
             if not os.path.isfile(f'saved_data/{args.year}/{args.model}/{column}.npy'):
-                print(f'Saving {column}')
+                print(f'Saving {column}...')
                 with open(f'saved_data/{args.year}/{args.model}/{column}.npy', 'wb') as f:
                     np.save(f, weighter.get_column(row, column))
 
                 print('Saved!')
+            else:
+                print(f'{column} already saved, skipping...')
+    
+    # Save ShowerPlane zenith
+    if not os.path.isfile(f'saved_data/{args.year}/{args.model}/showerplanezen.npy'):
+        print(f'Saving ShowerPlane zenith...')
+        with open(f'saved_data/{args.year}/{args.model}/showerplanezen.npy', 'wb') as f:
+            np.save(f, weighter.get_column('ShowerPlane', 'zenith'))
+    else:
+        print('ShowerPlane zenith already saved, skipping...')
+
+    # Save Laputop zenith
+    if not os.path.isfile(f'saved_data/{args.year}/{args.model}/laputopzen.npy'):
+        print(f'Saving Laputop zenith...')
+        with open(f'saved_data/{args.year}/{args.model}/laputopzen.npy', 'wb') as f:
+            np.save(f, weighter.get_column('Laputop', 'zenith'))
+
+        print('Saved!')
+    else:
+        print('Laputop zenith already saved, skipping...')
 
     # Save H4a weights
     if not os.path.isfile(f'saved_data/{args.year}/{args.model}/Hweights.npy'):
@@ -125,7 +160,7 @@ if __name__ == '__main__':
 
     # Include notes about available years and models here
     parser.add_argument('-y', '--year', type=int, required=True, help='2012, 2015, 2018')
-    parser.add_argument('-m', '--model', type=str, required=True, help='(Depending on year) EPOS-LHC, SIBYLL2.1, SIBYLL2.3, SIBYLL2.3d')
+    parser.add_argument('-m', '--model', type=str, required=True, help='(Depending on year) EPOS-LHC, QGSJET-II-04, SIBYLL2.1, SIBYLL2.3, SIBYLL2.3d')
 
     args = parser.parse_args()
     
