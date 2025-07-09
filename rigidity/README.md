@@ -1,9 +1,6 @@
 ## Rigidity project (IceCube vs IceTop)
 
-$$
-R=\frac{E}{Z}
-
-$$
+$$R=\frac{E}{Z}$$
 
 This folder contains scripts for determining the average composition for use in
 anisotropy studies. The end goal should include the following:
