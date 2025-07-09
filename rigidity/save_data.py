@@ -50,20 +50,19 @@ def main(args):
         if args.model == 'EPOS-LHC':
             file_list = []
             for i in range(51, 69):
-                file_list += glob(dir_base + 'Fe/23201_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'He/23199_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'O/23200_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'p/23198_v3' + f'/h5files/*E{i/10}*.h5')
+                file_list += glob(dir_base + f'Fe/23201_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'He/23199_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'O/23200_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'p/23198_v3/h5files/*E{i/10}*.h5')
         
         # Files of energy decade less than 4.8 do not have necessary columns
         elif args.model == 'SIBYLL2.3d':
             file_list = []
             for i in range(48, 79):
-                file_list += glob(dir_base + 'Fe_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'He_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'O_allE_links_v3' + f'/h5files/*E{i/10}*.h5') + glob(dir_base + 'p_allE_links_v3' + f'/h5files/*E{i/10}*.h5')
+                file_list += glob(dir_base + f'Fe_allE_links_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'He_allE_links_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'O_allE_links_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'p_allE_links_v3/h5files/*E{i/10}*.h5')
         
         elif args.model == 'QGSJET-II-04':
-            file_list = glob(dir_base + 'Fe/23126_v3' + dir_end) + glob(dir_base + 'He/23124_v3' + dir_end) + glob(dir_base + 'O/23125_v3' + dir_end) + glob(dir_base + 'p/23116_v3' + dir_end)
-            print(dir_base + 'Fe/23126_v3' + dir_end)
-            print(dir_base + 'He/23124_v3' + dir_end)
-            print(dir_base + 'O/23125_v3' + dir_end)
-            print(dir_base + 'p/23116_v3' + dir_end)
+            file_list = []
+            for i in range(51, 69):
+                file_list += glob(dir_base + f'Fe/23126_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'He/23124_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'O/23125_v3/h5files/*E{i/10}*.h5') + glob(dir_base + f'p/23116_v3/h5files/*E{i/10}*.h5')
+
         else:
             # Error case: user inputs undefined model
             print('No data for that model. Add the directory for that model first!')
@@ -139,7 +138,7 @@ def main(args):
             np.save(f, weighter.get_weights(simweights.GaisserH4a_IT()))
         print('Saved!')
     else:
-        print('File already exists, skipping')
+        print('H4a weights already saved, skipping...')
 
     # Save GSF weights
     if not os.path.isfile(f'saved_data/{args.year}/{args.model}/Gweights.npy'):
@@ -148,7 +147,7 @@ def main(args):
             np.save(f, weighter.get_weights(simweights.GlobalSplineFit_IT()))
         print('Saved!')
     else:
-        print('File already exists, skipping')
+        print('GSF weights already saved, skipping...')
     
     # Close the weighter and finish up
     file_obj.close()
