@@ -11,15 +11,18 @@ sys.path.append(f'/home/{getpass.getuser()}/.local/lib/python3.12/site-packages'
 import simweights
 
 def main(args):
+    save_data_dir = f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/'
+
     # Checks to see if we can just skip through the script
-    if not (os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/energy.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Gweights.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Hweights.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/IceTop_reco_succeeded.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/laputopzen.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/nstrings.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/showerplanezen.npy') and
-        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/type.npy')):
+    if not (os.path.isfile(save_data_dir +'energy.npy') and
+        os.path.isfile(save_data_dir + 'Gweights.npy') and
+        os.path.isfile(save_data_dir + 'Hweights.npy') and
+        os.path.isfile(save_data_dir + 'IceTop_reco_succeeded.npy') and
+        os.path.isfile(save_data_dir + 'laputop_zen.npy') and
+        os.path.isfile(save_data_dir + 'nstrings.npy') and
+        os.path.isfile(save_data_dir + 'showerplanezen.npy') and
+        os.path.isfile(save_data_dir + 'type.npy')):
+        
         # Set up the base directory for the files
         dir_base = f'/data/ana/CosmicRay/IceTop_level3/sim/IC86.{args.year}/{args.model}/'
         dir_end = '/h5files/*.h5'
@@ -100,72 +103,33 @@ def main(args):
 
         # Set up a dictionary for harvesting data - weights are harvested seperately
         # If you need more data, add it here
+        print('Getting data...')
         DATA = {
-            'MCPrimary': 'energy',
-            'IceTopHLCSeedRTPulses_SnowUnAttenuated_info': 'nstrings',
-            'IT73AnalysisIceTopQualityCuts': 'IceTop_reco_succeeded'
+            'energy': weighter.get_column('MCPrimary', 'energy'),
+            'particle_type': weighter.get_column('MCPrimary', 'type'),
+            'showerplane_zen': weighter.get_column('ShowerPlane', 'zenith'),
+            'laputop_zen': weighter.get_column('Laputop', 'zenith'),
+            'hits': weighter.get_column('IceTopHLCSeedRTPulses_SnowUnAttenuated_info', 'nstrings'),
+            'reco_pass': weighter.get_column('IT73AnalysisIceTopQualityCuts', 'IceTop_reco_succeeded'),
+            'Hweights': weighter.get_weights(simweights.GaisserH4a_IT()),
+            'Gweights': weighter.get_weights(simweights.GlobalSplineFit_IT())
         }
+        print('Got data!')
 
-        save_data_dir = f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/'
         # If the file path for the year and interaction model does not exist, create it
         if not os.path.exists(save_data_dir):
             os.makedirs(save_data_dir)
 
         # Save data from DATA
-        for row, column in DATA.items():
-            if not os.path.isfile(save_data_dir + f'{column}.npy'):
-                print(f'Saving {column}...')
-                with open(save_data_dir + f'{column}.npy', 'wb') as f:
-                    np.save(f, weighter.get_column(row, column))
+        for name, data in DATA.items():
+            if not os.path.isfile(save_data_dir + f'{name}.npy'):
+                print(f'Saving {name}...')
+                with open(save_data_dir + f'{name}.npy', 'wb') as f:
+                    np.save(f, data)
 
                 print('Saved!')
             else:
-                print(f'{column} already saved, skipping...')
-
-        if not os.path.isfile(save_data_dir + 'particle_type.npy'):
-            print('Saving particle_type...')
-            with open(save_data_dir + 'particle_type.npy', 'wb') as f:
-                np.save(f, weighter.get_column('MCPrimary', 'type'))
-
-            print('Saved!')
-        else:
-            print('particle_type already saved, skipping...')
-        
-        # Save ShowerPlane zenith
-        if not os.path.isfile(save_data_dir + 'showerplanezen.npy'):
-            print(f'Saving ShowerPlane zenith...')
-            with open(save_data_dir + 'showerplanezen.npy', 'wb') as f:
-                np.save(f, weighter.get_column('ShowerPlane', 'zenith'))
-        else:
-            print('ShowerPlane zenith already saved, skipping...')
-
-        # Save Laputop zenith
-        if not os.path.isfile(save_data_dir + 'laputopzen.npy'):
-            print(f'Saving Laputop zenith...')
-            with open(save_data_dir + 'laputopzen.npy', 'wb') as f:
-                np.save(f, weighter.get_column('Laputop', 'zenith'))
-
-            print('Saved!')
-        else:
-            print('Laputop zenith already saved, skipping...')
-
-        # Save H4a weights
-        if not os.path.isfile(save_data_dir + 'Hweights.npy'):
-            print('Saving H4a weights...')
-            with open(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Hweights.npy', 'wb') as f:
-                np.save(f, weighter.get_weights(simweights.GaisserH4a_IT()))
-            print('Saved!')
-        else:
-            print('H4a weights already saved, skipping...')
-
-        # Save GSF weights
-        if not os.path.isfile(save_data_dir + 'Gweights.npy'):
-            print('Saving GSF weights...')
-            with open(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Gweights.npy', 'wb') as f:
-                np.save(f, weighter.get_weights(simweights.GlobalSplineFit_IT()))
-            print('Saved!')
-        else:
-            print('GSF weights already saved, skipping...')
+                print(f'{name} already saved, skipping...')
         
         # Close the weighter and finish up
         file_obj.close()
@@ -177,7 +141,7 @@ if __name__ == '__main__':
     # Define the arguments for the file
     parser = argparse.ArgumentParser(description="Save data to a .npy file")
 
-    # Include notes about available years and models here
+    # Arguments for year and model, along with notes for available models
     parser.add_argument('-y', '--year', type=int, required=True, help='2012, 2015, 2018')
     parser.add_argument('-m', '--model', type=str, required=True, help='(Depending on year) EPOS-LHC, QGSJET-II-04, SIBYLL2.1, SIBYLL2.3, SIBYLL2.3d')
 
