@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # Requires cvmfs
-import os, sys, tables, argparse
+import os, sys, tables, argparse, getpass
 
 from glob import glob
 
 import numpy as np
 # pip install simweights <--- run this once to install the package
-# then replace <username> with your username and <version> with your Python version
-sys.path.append('/home/tfutrell/.local/lib/python3.12/site-packages')
+# then replace <version> with the Python version on your terminal
+sys.path.append(f'/home/{getpass.getuser()}/.local/lib/python3.12/site-packages')
 import simweights
 
 def main(args):
@@ -109,13 +109,18 @@ def main(args):
             'IceTopHLCSeedRTPulses_SnowUnAttenuated_info': ['nstrings'],
             'IT73AnalysisIceTopQualityCuts': ['IceTop_reco_succeeded']
         }
-        
+
+        save_data_dir = f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/'
+        # If the file path for the year and interaction model does not exist, create it
+        if not os.path.exists(save_data_dir):
+            os.makedirs(save_data_dir)
+
         # Save data from DATA
         for row, sets in DATA.items():
             for column in sets:
-                if not os.path.isfile(f'saved_data/{args.year}/{args.model}/{column}.npy'):
+                if not os.path.isfile(save_data_dir + f'{column}.npy'):
                     print(f'Saving {column}...')
-                    with open(f'saved_data/{args.year}/{args.model}/{column}.npy', 'wb') as f:
+                    with open(save_data_dir + f'{column}.npy', 'wb') as f:
                         np.save(f, weighter.get_column(row, column))
 
                     print('Saved!')
@@ -131,9 +136,9 @@ def main(args):
             print('ShowerPlane zenith already saved, skipping...')
 
         # Save Laputop zenith
-        if not os.path.isfile(f'saved_data/{args.year}/{args.model}/laputopzen.npy'):
+        if not os.path.isfile(save_data_dir + 'laputopzen.npy'):
             print(f'Saving Laputop zenith...')
-            with open(f'saved_data/{args.year}/{args.model}/laputopzen.npy', 'wb') as f:
+            with open(save_data_dir + 'laputopzen.npy', 'wb') as f:
                 np.save(f, weighter.get_column('Laputop', 'zenith'))
 
             print('Saved!')
@@ -141,18 +146,18 @@ def main(args):
             print('Laputop zenith already saved, skipping...')
 
         # Save H4a weights
-        if not os.path.isfile(f'saved_data/{args.year}/{args.model}/Hweights.npy'):
+        if not os.path.isfile(save_data_dir + 'Hweights.npy'):
             print('Saving H4a weights...')
-            with open(f'saved_data/{args.year}/{args.model}/Hweights.npy', 'wb') as f:
+            with open(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Hweights.npy', 'wb') as f:
                 np.save(f, weighter.get_weights(simweights.GaisserH4a_IT()))
             print('Saved!')
         else:
             print('H4a weights already saved, skipping...')
 
         # Save GSF weights
-        if not os.path.isfile(f'saved_data/{args.year}/{args.model}/Gweights.npy'):
+        if not os.path.isfile(save_data_dir + 'Gweights.npy'):
             print('Saving GSF weights...')
-            with open(f'saved_data/{args.year}/{args.model}/Gweights.npy', 'wb') as f:
+            with open(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Gweights.npy', 'wb') as f:
                 np.save(f, weighter.get_weights(simweights.GlobalSplineFit_IT()))
             print('Saved!')
         else:
