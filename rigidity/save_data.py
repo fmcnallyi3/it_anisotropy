@@ -12,14 +12,14 @@ import simweights
 
 def main(args):
     # Checks to see if we can just skip through the script
-    if not (os.path.isfile(f'saved_data/{args.year}/{args.model}/energy.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/Gweights.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/Hweights.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/IceTop_reco_succeeded.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/laputopzen.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/nstrings.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/showerplanezen.npy') and
-        os.path.isfile(f'saved_data/{args.year}/{args.model}/type.npy')):
+    if not (os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/energy.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Gweights.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/Hweights.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/IceTop_reco_succeeded.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/laputopzen.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/nstrings.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/showerplanezen.npy') and
+        os.path.isfile(f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/type.npy')):
         # Set up the base directory for the files
         dir_base = f'/data/ana/CosmicRay/IceTop_level3/sim/IC86.{args.year}/{args.model}/'
         dir_end = '/h5files/*.h5'
