@@ -98,16 +98,12 @@ def main(args):
 
         print('Got weights!')
 
-        # If the file path for the year and interaction model does not exist, create it
-        if not os.path.exists(f'saved_data/{args.year}/{args.model}'):
-            os.makedirs(f'saved_data/{args.year}/{args.model}/')
-
         # Set up a dictionary for harvesting data - weights are harvested seperately
         # If you need more data, add it here
         DATA = {
-            'MCPrimary': ['energy', 'type'],
-            'IceTopHLCSeedRTPulses_SnowUnAttenuated_info': ['nstrings'],
-            'IT73AnalysisIceTopQualityCuts': ['IceTop_reco_succeeded']
+            'MCPrimary': 'energy',
+            'IceTopHLCSeedRTPulses_SnowUnAttenuated_info': 'nstrings',
+            'IT73AnalysisIceTopQualityCuts': 'IceTop_reco_succeeded'
         }
 
         save_data_dir = f'/data/user/{getpass.getuser()}/it_anisotropy/{args.year}/{args.model}/'
@@ -116,21 +112,29 @@ def main(args):
             os.makedirs(save_data_dir)
 
         # Save data from DATA
-        for row, sets in DATA.items():
-            for column in sets:
-                if not os.path.isfile(save_data_dir + f'{column}.npy'):
-                    print(f'Saving {column}...')
-                    with open(save_data_dir + f'{column}.npy', 'wb') as f:
-                        np.save(f, weighter.get_column(row, column))
+        for row, column in DATA.items():
+            if not os.path.isfile(save_data_dir + f'{column}.npy'):
+                print(f'Saving {column}...')
+                with open(save_data_dir + f'{column}.npy', 'wb') as f:
+                    np.save(f, weighter.get_column(row, column))
 
-                    print('Saved!')
-                else:
-                    print(f'{column} already saved, skipping...')
+                print('Saved!')
+            else:
+                print(f'{column} already saved, skipping...')
+
+        if not os.path.isfile(save_data_dir + 'particle_type.npy'):
+            print('Saving particle_type...')
+            with open(save_data_dir + 'particle_type.npy', 'wb') as f:
+                np.save(f, weighter.get_column('MCPrimary', 'type'))
+
+            print('Saved!')
+        else:
+            print('particle_type already saved, skipping...')
         
         # Save ShowerPlane zenith
-        if not os.path.isfile(f'saved_data/{args.year}/{args.model}/showerplanezen.npy'):
+        if not os.path.isfile(save_data_dir + 'showerplanezen.npy'):
             print(f'Saving ShowerPlane zenith...')
-            with open(f'saved_data/{args.year}/{args.model}/showerplanezen.npy', 'wb') as f:
+            with open(save_data_dir + 'showerplanezen.npy', 'wb') as f:
                 np.save(f, weighter.get_column('ShowerPlane', 'zenith'))
         else:
             print('ShowerPlane zenith already saved, skipping...')
