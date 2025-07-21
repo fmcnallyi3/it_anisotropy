@@ -33,22 +33,19 @@ if __name__ == "__main__":
     cmd = f'{script_dir}/count_finder.py'
 
     # Data locations (temporary)
-    prefix = '/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/outputa'
-    outdir = '/data/user/fmcnally/icetop_12yr/stability'
+    prefix = '/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/sidereal_unblinded/tier'
+    outdir = '/data/user/cjoiner/icetop_12yr/stability'
 
     for year in args.year:
-
         for tier in args.tier:
-
             # Check for existing outfile
             outfile = f'{outdir}/counts_{year}_Tier{tier}.json'
             if Path(outfile).exists() and not args.overwrite:
-                #print(f'  Output file {outfile} already exists. Skipping...')
+                print(f'  Output file {outfile} already exists. Skipping...')
                 continue
 
             # Base name for all files
-            # Last directory is sometimes ITpass2 and sometimes ITpass2_sd?
-            file_base = f'{prefix}/tier{tier}_unblinded/ITpass2*/{year}-'
+            file_base = f'{prefix}{tier}/fitsbydate/{year}'
 
             # Some years don't have Tiers 1 and 2 (2016+)
             files = sorted(glob(f'{file_base}*/*.fits.gz'))
