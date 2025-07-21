@@ -8,7 +8,7 @@ anisotropy studies. The end goal should include the following:
 * [X] a table of the fractional composition (0.21 p, 0.25 He, etc.) for each energy
   bin in IceCube and each Tier in IceTop
 * [X] a table of ln(A) for the same
-* [X] a table of average rigidity (E/Z) for the same
+* [X] a table of median rigidity (E/Z) for the same
 * [ ] it probably needs to involve a time-dependent look for IceTop as well...
 
 This folder should eventually be incorporated into the IceTop anisotropy
