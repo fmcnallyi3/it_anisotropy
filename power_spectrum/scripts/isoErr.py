@@ -18,7 +18,7 @@ from map_functions import getMap, maskMap
 if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
-            description='Angular power spectrum isotropic bands maker.',
+            description='Makes angular power spectrum isotropic bands.',
             epilog='To run: python [code] -f [path to input file] -o [path to output file]. -n can be set to any integer and is defaulted to 1e6')
     p.add_argument('-f', '--files', dest='files',
             nargs='+',

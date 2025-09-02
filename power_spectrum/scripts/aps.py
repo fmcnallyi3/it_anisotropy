@@ -81,13 +81,11 @@ if __name__ == "__main__":
     tick_labels[-1]=""
     a2.set_xticklabels(tick_labels, **tparams)
 
-
     # Series formatting
     fmt = {'marker':'o', 'linestyle':'none'}
     multipoles = [False] if not args.multi else [False, 2]
     # Systematic error bar setup
     eb = {'edgecolor':None, 'linewidth':0, 'linestyle':None}
-
 
     for i, f in enumerate(args.files):
 

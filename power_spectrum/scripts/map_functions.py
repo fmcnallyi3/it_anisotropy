@@ -31,7 +31,6 @@ def maskMap(m, decmin, decmax):
 
     return new_map
 
-
 # Li Ma Significance
 def LMSignificance(nData, nBG, alpha, nData_wsq=None, nBG_wsq=None):
 
@@ -49,7 +48,6 @@ def LMSignificance(nData, nBG, alpha, nData_wsq=None, nBG_wsq=None):
             + Noff * np.log(((1+alpha)*Noff) / (Non+Noff))))
 
     return sigma
-
 
 # Return the real Cartesian spherical harmonic for a given l, m
 def norm_sphharm(l, m, vx, vy, vz):

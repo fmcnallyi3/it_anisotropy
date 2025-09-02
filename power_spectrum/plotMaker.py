@@ -51,7 +51,6 @@ if __name__ == "__main__":
                    nargs='+',
                    help='Sets the label for the plot legend.')
 
-
     args = p.parse_args()
 
     # find the final iteration for our tier
@@ -94,7 +93,6 @@ if __name__ == "__main__":
         iso_file = Path(f'{args.out}/t{args.tier}iso.npy')
         sys_file = Path(f'{args.out}/t{args.tier}sys.txt')
         stat_file = Path(f'{args.out}/t{args.tier}stat.txt')
-
 
         # Check if an uncertainty file is present, if it is, add it to the graph
         a  = f'{cmd} -f {f} '

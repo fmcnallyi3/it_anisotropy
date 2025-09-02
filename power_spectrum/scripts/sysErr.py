@@ -18,7 +18,7 @@ from map_functions import getMap
 if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
-            description='Angular power spectrum error bar maker.',
+            description='Makes angular power spectrum error bars.',
             epilog='To run: python [code] -f [path to input file] -o [path to output file]. -n can be set to any integer and is defaulted to 1e5')
     p.add_argument('-f', '--files', dest='files',
             nargs='+',
@@ -34,7 +34,6 @@ if __name__ == "__main__":
             help='Output filename.')
 
     args = p.parse_args()
-
 
     # Avoid boosted counts if top-hat smoothing applied
     norm = True if args.smooth!=0 else False
