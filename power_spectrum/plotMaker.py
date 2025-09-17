@@ -23,7 +23,7 @@ if __name__ == "__main__":
                    default = '1',
                    help = 'The energy bin tier. please type -t # to direct to proper directory. default 1.')
     p.add_argument('-o', '--output', dest='out',
-                   default = '/data/user/ahinners/anisotropy/powerspec/Test',
+                   default = '/data/user/ahinners/anisotropy/powerspec',
                    help='output directory, please change default for your needs')
     p.add_argument('-m', '--make', dest='make',
                    default = False,
@@ -50,6 +50,9 @@ if __name__ == "__main__":
     p.add_argument('-l', '--label', dest='label',
                    nargs='+',
                    help='Sets the label for the plot legend.')
+    p.add_argument('-il', '--iso_label', dest='iso_label',
+                   default=False, action='store_true',
+                   help='Suppress the output of noise labels in legend')
 
     args = p.parse_args()
 
@@ -60,15 +63,15 @@ if __name__ == "__main__":
 
     # Make isotropic error bands
     cmd = f'{current}/scripts/isoErr.py'
-    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/t{args.tier}iso' 
-
+    a = f'{cmd} -f {f} -s {args.smooth} -o {args.out}/T{args.tier}/t{args.tier}iso' 
+    
     if args.iso:
         subprocess.Popen(a.split(' '))
         print('making isotropic noise bands')
     
     # Make systematic error bars
     cmd = f'{current}/scripts/sysErr.py'
-    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/t{args.tier}sys'
+    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/T{args.tier}/t{args.tier}sys'
 
     if args.sys:
         subprocess.Popen(a.split(' '))
@@ -76,23 +79,23 @@ if __name__ == "__main__":
     
     # Make statistical error bars
     cmd = f'{current}/scripts/statErr.py'
-    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/t{args.tier}stat'
+    a = f'{cmd} -f {f} -n {args.n} -s {args.smooth} -o {args.out}/T{args.tier}/t{args.tier}stat'
 
     if args.stat:
         subprocess.Popen(a.split(' '))
         print('making statistical error bars')
 
     if (args.iso or args.sys or args.stat):
-        print(f'The uncertainties were saved to {args.out}')
+        print(f'The uncertainties were saved to {args.out}/T{args.tier}')
 
     # Code to make Angular Power Spectrum
     if args.make:
         cmd = f'{current}/scripts/aps.py'
-    
+        
         # set arguments for uncertainty files (the out directory is where the files are too)
-        iso_file = Path(f'{args.out}/t{args.tier}iso.npy')
-        sys_file = Path(f'{args.out}/t{args.tier}sys.txt')
-        stat_file = Path(f'{args.out}/t{args.tier}stat.txt')
+        iso_file = Path(f'{args.out}/T{args.tier}/t{args.tier}iso.npy')
+        sys_file = Path(f'{args.out}/T{args.tier}/t{args.tier}sys.txt')
+        stat_file = Path(f'{args.out}/T{args.tier}/t{args.tier}stat.txt')
 
         # Check if an uncertainty file is present, if it is, add it to the graph
         a  = f'{cmd} -f {f} '
@@ -102,8 +105,10 @@ if __name__ == "__main__":
             a += f'-sy {sys_file} '
         if stat_file.is_file():
             a += f'-st {stat_file} '
+        if args.iso_label:
+            a += f'-il '
     
-        a += f'-s {args.smooth} -o {args.out}/APS_T{args.tier}_S{args.smooth} -l {args.label}'
+        a += f'-s {args.smooth} -o {args.out}/T{args.tier}/APS_T{args.tier}_S{args.smooth} -l {args.label}'
         subprocess.Popen(a.split(' '))
     
-        print(f'Angular power spectrum saved to {args.out}')
+        print(f'Angular power spectrum saved to {args.out}/T{args.tier}')

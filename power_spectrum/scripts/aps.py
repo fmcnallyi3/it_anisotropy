@@ -47,7 +47,7 @@ if __name__ == "__main__":
     p.add_argument('-i', '--iso', dest='iso',
             nargs = '+',
             help ='Input isotropic noise band files from isoErr.py')
-    p.add_argument('--mute_iso_labels', dest='mute_iso_labels',
+    p.add_argument('-il', '--iso_labels', dest='iso_labels',
             default=False, action='store_true',
             help='Suppress the output of noise labels in legend')
 
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     tparams = {'fontsize':14}
     ax.set_yscale('log')
     ax.set_xlim([0, xlim])
-    ax.set_ylim([10**-12, 10**-6])
+    ax.set_ylim([10**-12, 10**-5])
     ax.set_xlabel("multipole $\ell$", **tparams)
     ax.set_ylabel(r'$\tilde{C}_{\ell}$', **tparams)
     ax.tick_params(axis='both', which='major', labelsize=14, length=10)
@@ -117,7 +117,7 @@ if __name__ == "__main__":
             x = np.arange(len(y))
 
             # Labeling
-            label = 'X-axis'
+            label = ' '.join(args.label[i].split('_')).replace('[','').replace(']','').replace("'","")
             if multi != False:
                 label += ' (small-scale)'
 
@@ -148,12 +148,13 @@ if __name__ == "__main__":
                 ax.fill_between(x[1:], iso[-k], iso[k], lw=0, color=color,
                         zorder=0)   # draw behind systematic errors
             # Then sort entries so they're listed as expected in the legend
-            if not args.mute_iso_labels:
+            if args.iso_labels:
                 for k, color in sorted(c.items()):
                     handles += [mpl.patches.Patch(color=color, 
                                 label=fr'noise (${k}\sigma$)')]
 
     # Finish and save
+    fig.legend(handles=handles, fontsize='large', bbox_to_anchor=(.96,.895))
     fig.tight_layout()
 
     print(f'Writing file to {args.out}')
