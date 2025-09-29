@@ -46,7 +46,12 @@ if __name__ == "__main__":
                 continue
 
             # Base name for all files
-            file_base = f'{prefix}{tier}/fitsbydate/{year}'
+            # dates from approx. July 2018 - July 2019 are doubled for normal path, so new path w/ correct counts used
+            if year in [2018, 2019]:
+                file_base = f'{prefix}{tier}/newdag_fits/{year}'
+                print(f'newdag_fits used!')
+            else:
+                file_base = f'{prefix}{tier}/fitsbydate/{year}'
 
             # Some years don't have Tiers 1 and 2 (2016+)
             files = sorted(glob(f'{file_base}*/*.fits.gz'))
