@@ -53,6 +53,9 @@ if __name__ == "__main__":
     p.add_argument('-il', '--iso_label', dest='iso_label',
                    default=False, action='store_true',
                    help='Suppress the output of noise labels in legend')
+    p.add_argument('-icp', '--ice_prelim', dest='icp',
+                   default=False, action ='store_true',
+                   help='Adds IceCube Preliminary to power spectrum')
 
     args = p.parse_args()
 
@@ -107,8 +110,10 @@ if __name__ == "__main__":
             a += f'-st {stat_file} '
         if args.iso_label:
             a += f'-il '
+        if args.icp:
+            a += f'-icp '
     
         a += f'-s {args.smooth} -o {args.out}/T{args.tier}/APS_T{args.tier}_S{args.smooth} -l {args.label}'
         subprocess.Popen(a.split(' '))
-    
+
         print(f'Angular power spectrum saved to {args.out}/T{args.tier}')

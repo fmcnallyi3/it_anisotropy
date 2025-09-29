@@ -50,6 +50,9 @@ if __name__ == "__main__":
     p.add_argument('-il', '--iso_labels', dest='iso_labels',
             default=False, action='store_true',
             help='Suppress the output of noise labels in legend')
+    p.add_argument('-icp', '--ice_prelim', dest='icp',
+                   default=False, action ='store_true',
+                   help='Adds IceCube Preliminary to power spectrum')
 
     args = p.parse_args()
 
@@ -156,7 +159,9 @@ if __name__ == "__main__":
     # Finish and save
     fig.legend(handles=handles, fontsize='large', bbox_to_anchor=(.96,.895))
     fig.tight_layout()
-
+    if args.icp:
+        plt.text(10, 1e-7, 'IceCube Preliminary', color='red', fontsize = 20)
+    
     print(f'Writing file to {args.out}')
     plt.savefig(args.out)
 
