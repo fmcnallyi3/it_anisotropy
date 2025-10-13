@@ -33,12 +33,15 @@ if __name__ == "__main__":
     cmd = f'{script_dir}/count_finder.py'
 
     # Data locations (temporary)
-    prefix =
-'/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/sidereal_unblinded/tier'
+    prefix ='/data/ana/CosmicRay/Anisotropy/IceTop/ITpass2/output/sidereal_unblinded/tier'
     outdir = '/data/user/cjoiner/icetop_12yr/stability'
 
     for year in args.year:
         for tier in args.tier:
+            if tier in [1,2]:
+                newdag_fits = False
+            else:
+                newdag_fits = True
             # Check for existing outfile
             outfile = f'{outdir}/counts_{year}_Tier{tier}.json'
             if Path(outfile).exists() and not args.overwrite:
@@ -47,10 +50,10 @@ if __name__ == "__main__":
 
             # Base name for all files
             # dates from approx. July 2018 - July 2019 are doubled for normal path, so new path w/ correct counts used
-            if year in [2018, 2019]:
+            if newdag_fits == True:
                 file_base = f'{prefix}{tier}/newdag_fits/{year}'
                 print(f'newdag_fits used!')
-            else:
+            if newdag_fits == False:
                 file_base = f'{prefix}{tier}/fitsbydate/{year}'
 
             # Some years don't have Tiers 1 and 2 (2016+)
