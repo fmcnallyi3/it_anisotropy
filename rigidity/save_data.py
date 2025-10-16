@@ -19,8 +19,12 @@ def main(args):
         os.path.isfile(save_data_dir + 'Hweights.npy') and
         os.path.isfile(save_data_dir + 'IceTop_reco_succeeded.npy') and
         os.path.isfile(save_data_dir + 'laputop_zen.npy') and
+        os.path.isfile(save_data_dir + 'showerplane_zen.npy') and
+        os.path.isfile(save_data_dir + 'true_zenith.npy') and
+        os.path.isfile(save_data_dir + 'laputop_az.npy') and
+        os.path.isfile(save_data_dir + 'showerplane_az.npy') and
+        os.path.isfile(save_data_dir + 'true_azimuth.npy') and
         os.path.isfile(save_data_dir + 'nstrings.npy') and
-        os.path.isfile(save_data_dir + 'showerplanezen.npy') and
         os.path.isfile(save_data_dir + 'type.npy')):
         
         # Set up the base directory for the files
@@ -109,6 +113,10 @@ def main(args):
             'particle_type': weighter.get_column('MCPrimary', 'type'),
             'showerplane_zen': weighter.get_column('ShowerPlane', 'zenith'),
             'laputop_zen': weighter.get_column('Laputop', 'zenith'),
+            'true_zenith': weighter.get_column('MCPrimary', 'zenith'),
+            'showerplane_az': weighter.get_column('ShowerPlane', 'azimuth'),
+            'laputop_az': weighter.get_column('Laputop', 'azimuth'),
+            'true_azimuth': weighter.get_column('MCPrimary', 'azimuth'),
             'hits': weighter.get_column('IceTopHLCSeedRTPulses_SnowUnAttenuated_info', 'nstrings'),
             'reco_pass': weighter.get_column('IT73AnalysisIceTopQualityCuts', 'IceTop_reco_succeeded'),
             'Hweights': weighter.get_weights(simweights.GaisserH4a_IT()),
