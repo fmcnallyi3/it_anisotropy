@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import healpy as hp
-import numpy as np
 import argparse
-import matplotlib.pyplot as plt
+import healpy as hp
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
-#import matplotlib.patches as mpatches
+import scipy
+import numpy as np
 
 import os, sys
 
@@ -16,7 +16,16 @@ current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
 sys.path.append(parent)
 
+# import packages from hpenv virtual environment
+#sys.path.append('/home/ahinners/hpenv/lib/python3.12/site-packages')
+
 from map_functions import getMap
+#import healpy as hp
+#import matplotlib as mpl
+#import matplotlib.pyplot as plt
+#import matplotlib.collections as PatchCollection
+#import scipy
+#import numpy as np
 
 if __name__ == "__main__":
 
@@ -40,7 +49,7 @@ if __name__ == "__main__":
             help ='Input error bar files from statErr.py')
     p.add_argument('-m', '--multi', dest='multi',
             default=False, action='store_true',
-            help='Set to also show data w/ \ell=2 multipole subtraction')
+            help='Set to also show data w/ ell=2 multipole subtraction')
     p.add_argument('-s', '--smooth', dest='smooth',
             type=float, default=0,
             help='Smooth data and background maps')
@@ -70,7 +79,7 @@ if __name__ == "__main__":
     ax.set_yscale('log')
     ax.set_xlim([0, xlim])
     ax.set_ylim([10**-12, 10**-5])
-    ax.set_xlabel("multipole $\ell$", **tparams)
+    ax.set_xlabel(r"multipole $\ell$", **tparams)
     ax.set_ylabel(r'$\tilde{C}_{\ell}$', **tparams)
     ax.tick_params(axis='both', which='major', labelsize=14, length=10)
     ax.grid(False)  # Hide gridlines
@@ -125,9 +134,10 @@ if __name__ == "__main__":
                 label += ' (small-scale)'
 
             # Systematic error bars if available (generated with sysErr)
+            dc = '#FF9B52' # dc for dot (and error bar) color 
             if args.staterr:
                 dCl = np.loadtxt(args.staterr[i][j])
-                l = ax.errorbar(x, y, yerr=dCl, label=label, **fmt)
+                l = ax.errorbar(x, y, yerr=dCl, label=label, **fmt, c=dc, ecolor = dc)
             else:
                 l = ax.plot(x, y, label=label, **fmt)
 
@@ -160,7 +170,7 @@ if __name__ == "__main__":
     fig.legend(handles=handles, fontsize='large', bbox_to_anchor=(.96,.895))
     fig.tight_layout()
     if args.icp:
-        plt.text(10, 1e-7, 'IceCube Preliminary', color='red', fontsize = 20)
+        plt.text(10, 1e-7, 'IceCube Preliminary', color='black', fontsize = 20)
     
     print(f'Writing file to {args.out}')
     plt.savefig(args.out)

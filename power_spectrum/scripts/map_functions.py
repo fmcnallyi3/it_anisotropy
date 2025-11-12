@@ -123,7 +123,7 @@ def real_sphharm(l, m, vx, vy, vz):
         return (vx**2 - 3*vy**2) * vx
 
 ## Creates dipole and quadrupole fit map
-def multifit(l, data, bg, alpha=1/20., params=False, out=False, verbose=False,
+def multifit(l, data, bg, alpha=1/20., params=False, out=False,
              decmax=-25., decmin=-90., useROOT=False, **kwargs):
 
     # ROOT minimizer only required for comparison to 6-year analysis
@@ -202,9 +202,6 @@ def multifit(l, data, bg, alpha=1/20., params=False, out=False, verbose=False,
     # Extract best fit parameters
     p = getFitParams(minimizer, fitparams, ndata, useROOT)
 
-    if verbose:
-        outputFit(p, fitparams, 1e4)
-
     if params:
         return p
 
@@ -268,7 +265,7 @@ def outputFit(p, fitparams, scale):
 
 # Takes in data, bg & dipole-quadrupole maps and creates false data map
 def multi_subtraction(l, data, bg, alpha=1/20., decmin=-25., decmax=-90.,
-                      verbose=False, fix_multi=False,
+                      fix_multi=False,
                       fix_data=None, fix_bg=None, **kwargs):
 
     opts = locals()
@@ -319,7 +316,7 @@ def smoothMap(m, wtsqr=False, norm=False, **opts):
 # Takes a file consisting of data, bg, and local maps. Returns desired
 # final type (relint, sig, etc) with smoothing, masking, and fitting options.
 def getMap(inFiles, mapName=None, multi=False, smooth=0,
-           swindow=3, verbose=False, mask=False, decmin=-90., decmax=90.,
+           swindow=3, mask=False, decmin=-90., decmax=90.,
            fix_multi=False, alpha=1/20., norm=False, **kwargs):
     
     # Require mapName input
@@ -342,23 +339,16 @@ def getMap(inFiles, mapName=None, multi=False, smooth=0,
     opts = locals()
     kwargs = opts.pop('kwargs')     # Catches unnecessary keyword args
 
-    # Option for verbose mode
-    if verbose:
-        print('Input parameters:')
-        for key in sorted(opts.keys()):
-            print(' --%s: %s' % (key, opts[key]))
-
     # Read in (multiple) input files
-    data, bg, local = np.sum([hp.read_map(f, range(3), verbose=False)
+    data, bg, local = np.sum([hp.read_map(f, range(3))
             for f in inFiles], axis=0)
 
     # Option for multipole subtraction
     fix_data, fix_bg = None, None
     if fix_multi:
         # Establish paths for analysis storage of maps
-        #ani.setup_output_dirs(verbose=False)
         ftot = '{}/IC86_24H_sid.fits'#.format(ani.maps)
-        fix_data, fix_bg = hp.read_map(ftot, range(2), verbose=False)
+        fix_data, fix_bg = hp.read_map(ftot, range(2))
     if multi:
         data = multi_subtraction(multi, data, bg, fix_data=fix_data,
                                  fix_bg=fix_bg, **opts)

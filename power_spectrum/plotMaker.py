@@ -1,4 +1,4 @@
-#!/bin/sh /cvmfs/icecube.opensciencegrid.org/py3-v4.1.1/icetray-start
+#!/bin/sh /cvmfs/icecube.opensciencegrid.org/py3-v4.4.2/icetray-start
 #METAPROJECT: icetray/stable
 
 import argparse
