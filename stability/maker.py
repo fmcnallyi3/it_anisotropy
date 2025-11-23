@@ -38,6 +38,7 @@ if __name__ == "__main__":
 
     for year in args.year:
         for tier in args.tier:
+            # tiers 3 and 4 were rerun as newdag_fits, as the original combined fits were incorrect
             if tier in [1,2]:
                 newdag_fits = False
             else:
@@ -49,7 +50,6 @@ if __name__ == "__main__":
                 continue
 
             # Base name for all files
-            # dates from approx. July 2018 - July 2019 are doubled for normal path, so new path w/ correct counts used
             if newdag_fits == True:
                 file_base = f'{prefix}{tier}/newdag_fits/{year}'
                 print(f'newdag_fits used!')
