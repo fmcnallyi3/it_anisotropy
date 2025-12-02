@@ -35,7 +35,29 @@ def main(args):
         # If you want to add a year or interaction model, add an (el)if args.year == <year>: line, then if an args.model == <model>: line, and then
         # a line file_list = glob(<Fe_directory>) + glob(<He_directory>) + glob(<O_directory>) + glob(<p_directory>)
         file_list = None
+        
+        '''Fe_list = []
+        Fe_folders = glob(dir_base + 'Fe/*')
+        if len(Fe_folders) > 0:
+            Fe_list = glob(sorted(Fe_folders)[-1] + dir_end)
 
+        He_list = []
+        He_folders = glob(dir_base + 'He/*')
+        if len(He_folders) > 0:
+            He_list = glob(sorted(He_folders)[-1] + dir_end)
+
+        O_list = []
+        O_folders = glob(dir_base + 'O/*')
+        if len(He_folders) > 0:
+            O_list = glob(sorted(O_folders)[-1] + dir_end)
+
+        p_list = []
+        p_folders = glob(dir_base + 'p/*')
+        if len(p_folders) > 0:
+            p_list = glob(sorted(p_folders)[-1] + dir_end)
+
+        file_list = Fe_list + He_list + O_list + p_list'''
+            
         if args.year == 2012:
             if args.model == 'EPOS-LHC':
                 file_list = glob(dir_base + 'Fe/12635_v1s' + dir_end) + glob(dir_base + 'p/12634_v1s' + dir_end)
@@ -88,6 +110,7 @@ def main(args):
             # Error case: user inputs undefined year
             print('No data for that year. Add the directory for that year and model first!')
             quit()
+        '''
 
         # Set up the weighter
         weighter = None
