@@ -19,14 +19,6 @@ sys.path.append(parent)
 # import packages from hpenv virtual environment
 #sys.path.append('/home/ahinners/hpenv/lib/python3.12/site-packages')
 
-from map_functions import getMap
-#import healpy as hp
-#import matplotlib as mpl
-#import matplotlib.pyplot as plt
-#import matplotlib.collections as PatchCollection
-#import scipy
-#import numpy as np
-
 if __name__ == "__main__":
 
     p = argparse.ArgumentParser(
@@ -62,10 +54,15 @@ if __name__ == "__main__":
     p.add_argument('-icp', '--ice_prelim', dest='icp',
                    default=False, action ='store_true',
                    help='Adds IceCube Preliminary to power spectrum')
+    p.add_argument('--fit-2d', dest='fit2d',
+        default=False, action='store_true',
+        help='Use 2d fit for l=1,2,3 instead of 1D projection')
+    
 
     args = p.parse_args()
 
-    # Avoid boosted counts if top-hat smoothing applied
+#else: 
+    #Avoid boosted counts if top-hat smoothing applied
     norm = True if args.smooth!=0 else False
 
     # Plot setup
@@ -134,10 +131,10 @@ if __name__ == "__main__":
                 label += ' (small-scale)'
 
             # Systematic error bars if available (generated with sysErr)
-            dc = '#FF9B52' # dc for dot (and error bar) color 
+            dc = '#FF4242' # dc for dot (and error bar) color 
             if args.staterr:
                 dCl = np.loadtxt(args.staterr[i][j])
-                l = ax.errorbar(x, y, yerr=dCl, label=label, **fmt, c=dc, ecolor = dc)
+                l = ax.errorbar(x, y, yerr=dCl, label=label, **fmt, c=dc, ecolor = '#363636', markeredgecolor='#363636')
             else:
                 l = ax.plot(x, y, label=label, **fmt)
 
