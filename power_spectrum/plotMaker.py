@@ -113,7 +113,7 @@ if __name__ == "__main__":
         if args.icp:
             a += f'-icp '
     
-        a += f'-s {args.smooth} -o {args.out}/T{args.tier}/APS_T{args.tier}_S{args.smooth} -l {args.label}'
+        a += f'-s {args.smooth} -o {args.out}/T{args.tier}/APS_T{args.tier}_S{args.smooth}.pdf -l {args.label}'
         subprocess.Popen(a.split(' '))
 
         print(f'Angular power spectrum saved to {args.out}/T{args.tier}')
