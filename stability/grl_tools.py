@@ -96,8 +96,6 @@ def parse_seraps_GRL(grl_file):
 
     return goodruns
 
-
-
 ''' Convert good run information into a dictionary with daily livetime '''
 def daily_livetime(i3_goodruns, it_goodruns=[]):
 
@@ -137,3 +135,36 @@ def daily_livetime(i3_goodruns, it_goodruns=[]):
             i3_livetime[day][run] = (stop_t - start_t).seconds
 
     return i3_livetime
+
+''' Rewriting daily livetime such that the days do not start and stop at midnight,
+    to be in line with IceTop daily maps '''
+def daily_icetop_livetime(i3_goodruns, it_goodruns=[]):
+
+    # Create dict with format: i3_icetop_livetime[day][run] = livetime
+    i3_icetop_livetime = defaultdict(lambda: defaultdict(int))
+
+    # IceTop requires additional check that runs exist in Serap's GRL
+    if len(it_goodruns) != 0:
+        it_runvals = [r['run'] for r in it_goodruns]
+        n0 = len(i3_goodruns)
+        i3_goodruns = [r for r in i3_goodruns if r['run'] in it_runvals]
+        n1 = len(i3_goodruns)
+        print(f'{(n0-n1)/n0 * 100:.1f}% of runs filtered out by IT GRL')
+
+    # Convert runs into a dictionary with keys for day and run
+    for run_info in i3_goodruns:
+
+        # Instate each day as a key for the dictionary
+        day = run_info['good_tstart'].split(' ')[0]
+        run = run_info['run']
+
+        # Obtain start/stop times from list, removing fractions of seconds
+        t_i = run_info['good_tstart'].split('.')[0]
+        start_t = dt.strptime(t_i, '%Y-%m-%d %H:%M:%S')
+        t_f = run_info['good_tstop'].split('.')[0]
+        stop_t = dt.strptime(t_f, '%Y-%m-%d %H:%M:%S')
+
+        # deleted all midnight related items
+        i3_icetop_livetime[day][run] = (stop_t - start_t).seconds
+
+    return i3_icetop_livetime
