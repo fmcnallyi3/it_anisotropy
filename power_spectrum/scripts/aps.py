@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import argparse
-import healpy as hp
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-from matplotlib.collections import PatchCollection
-import scipy
-import numpy as np
-
 import os, sys
 
 # Import standard analysis paths from directories.py in parent directory
@@ -17,7 +9,16 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 # import packages from hpenv virtual environment
-#sys.path.append('/home/ahinners/hpenv/lib/python3.12/site-packages')
+sys.path.append('/home/ahinners/hpenv/lib/python3.12/site-packages')
+
+import argparse
+import healpy as hp
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from matplotlib.collections import PatchCollection
+import scipy
+import numpy as np
+from map_functions import getMap
 
 if __name__ == "__main__":
 
@@ -61,7 +62,6 @@ if __name__ == "__main__":
 
     args = p.parse_args()
 
-#else: 
     #Avoid boosted counts if top-hat smoothing applied
     norm = True if args.smooth!=0 else False
 
@@ -130,7 +130,7 @@ if __name__ == "__main__":
             if multi != False:
                 label += ' (small-scale)'
 
-            # Systematic error bars if available (generated with sysErr)
+            # Statistical error bars if available (generated with statErr)
             dc = '#FF4242' # dc for dot (and error bar) color 
             if args.staterr:
                 dCl = np.loadtxt(args.staterr[i][j])
@@ -138,6 +138,7 @@ if __name__ == "__main__":
             else:
                 l = ax.plot(x, y, label=label, **fmt)
 
+            # Systematic error bars if available (generated with sysErr)
             if args.syserr:
                 dCl = np.loadtxt(args.syserr[i][j])
                 box = 0.8
