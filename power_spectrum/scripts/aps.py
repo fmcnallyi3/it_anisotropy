@@ -75,7 +75,7 @@ if __name__ == "__main__":
     tparams = {'fontsize':14}
     ax.set_yscale('log')
     ax.set_xlim([0, xlim])
-    ax.set_ylim([10**-12, 10**-5])
+    ax.set_ylim([10**-11, 10**-6])
     ax.set_xlabel(r"multipole $\ell$", **tparams)
     ax.set_ylabel(r'$\tilde{C}_{\ell}$', **tparams)
     ax.tick_params(axis='both', which='major', labelsize=14, length=10)

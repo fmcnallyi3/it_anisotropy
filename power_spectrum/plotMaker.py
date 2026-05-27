@@ -13,7 +13,7 @@ if __name__ == "__main__":
     # General options
     p = argparse.ArgumentParser(
             description='Wrapper script for producing Angular Power Spectrum for IceTop.',
-            epilog = 'How to run: python [code] -f [input file path] -t t[energy bin tier (1-4)] -o [ouput file path] -l [plot labels] -s [smoothing angle]. Use -m to make the uncertainty files, use -i, -st, or -sy to specify which uncertainty to make. use -n to iterate the uncertainties (more iterations -> better stats).')
+            epilog = 'How to run: python [code] -f [input file path] -t t[energy bin tier (1-4)] -o [ouput file path] -l [plot labels] -s [smoothing angle]. use -n to iterate the uncertainties (more iterations -> better stats).')
 
     # File paths (Update for your use)
     p.add_argument( '-f', '--inFile', dest='inFiles',
@@ -25,10 +25,6 @@ if __name__ == "__main__":
     p.add_argument('-o', '--output', dest='out',
                    default = '/data/user/ahinners/anisotropy/powerspec',
                    help='output directory, please change default for your needs')
-    p.add_argument('-m', '--make', dest='make',
-                   default = False,
-                   action = 'store_true',
-                   help = 'Determines whether or not to produce the angular power spectrum.')
     p.add_argument('-n','--n', dest='n',
                    type=int,
                    help='Determines how many times the uncertainty iterates. Default iso = 1e6, default sys/stat = 1e5.')
@@ -92,28 +88,27 @@ if __name__ == "__main__":
         print(f'The uncertainties were saved to {args.out}/T{args.tier}')
 
     # Code to make Angular Power Spectrum
-    if args.make:
-        cmd = f'{current}/scripts/aps.py'
-        
-        # set arguments for uncertainty files (the out directory is where the files are too)
-        iso_file = Path(f'{args.out}/T{args.tier}/t{args.tier}iso.npy')
-        sys_file = Path(f'{args.out}/T{args.tier}/t{args.tier}sys.txt')
-        stat_file = Path(f'{args.out}/T{args.tier}/t{args.tier}stat.txt')
-
-        # Check if an uncertainty file is present, if it is, add it to the graph
-        a  = f'{cmd} -f {f} '
-        if iso_file.is_file():
-            a += f'-i {iso_file} '
-        if sys_file.is_file():
-            a += f'-sy {sys_file} '
-        if stat_file.is_file():
-            a += f'-st {stat_file} '
-        if args.iso_label:
-            a += f'-il '
-        if args.icp:
-            a += f'-icp '
+    cmd = f'{current}/scripts/aps.py'
     
-        a += f'-s {args.smooth} -o {args.out}/T{args.tier}/APS_T{args.tier}_S{args.smooth}.pdf -l {args.label}'
-        subprocess.Popen(a.split(' '))
+    # set arguments for uncertainty files (the out directory is where the files are too)
+    iso_file = Path(f'{args.out}/T{args.tier}/t{args.tier}iso.npy')
+    sys_file = Path(f'{args.out}/T{args.tier}/t{args.tier}sys.txt')
+    stat_file = Path(f'{args.out}/T{args.tier}/t{args.tier}stat.txt')
 
-        print(f'Angular power spectrum saved to {args.out}/T{args.tier}')
+    # Check if an uncertainty file is present, if it is, add it to the graph
+    a  = f'{cmd} -f {f} '
+    if iso_file.is_file():
+        a += f'-i {iso_file} '
+    if sys_file.is_file():
+        a += f'-sy {sys_file} '
+    if stat_file.is_file():
+        a += f'-st {stat_file} '
+    if args.iso_label:
+        a += f'-il '
+    if args.icp:
+        a += f'-icp '
+
+    a += f'-s {args.smooth} -o {args.out}/T{args.tier}/APS_T{args.tier}_S{args.smooth}.png -l {args.label}'
+    subprocess.Popen(a.split(' '))
+
+    print(f'Angular power spectrum saving to {args.out}/T{args.tier}')
