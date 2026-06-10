@@ -166,8 +166,7 @@ def main(args):
         print('Got data!')
 
         # If the file path for the year and interaction model does not exist, create it
-        if not os.path.exists(save_data_dir):
-            os.makedirs(save_data_dir)
+        os.makedirs(save_data_dir, exist_ok=True)
 
         # Save data from DATA
         for name, data in DATA.items():
@@ -184,7 +183,7 @@ def main(args):
         file_obj.close()
         print('Finished!')
     else:
-        print('All files saved!')
+        print('All files already saved')
 
 if __name__ == '__main__':
     # Define the arguments for the file
