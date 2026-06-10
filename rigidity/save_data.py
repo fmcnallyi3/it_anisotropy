@@ -110,7 +110,6 @@ def main(args):
             # Error case: user inputs undefined year
             print('No data for that year. Add the directory for that year and model first!')
             quit()
-        '''
 
         # Set up the weighter
         weighter = None
@@ -131,20 +130,39 @@ def main(args):
         # Set up a dictionary for harvesting data - weights are harvested seperately
         # If you need more data, add it here
         print('Getting data...')
-        DATA = {
-            'energy': weighter.get_column('MCPrimary', 'energy'),
-            'particle_type': weighter.get_column('MCPrimary', 'type'),
-            'showerplane_zen': weighter.get_column('ShowerPlane', 'zenith'),
-            'laputop_zen': weighter.get_column('Laputop', 'zenith'),
-            'true_zenith': weighter.get_column('MCPrimary', 'zenith'),
-            'showerplane_az': weighter.get_column('ShowerPlane', 'azimuth'),
-            'laputop_az': weighter.get_column('Laputop', 'azimuth'),
-            'true_azimuth': weighter.get_column('MCPrimary', 'azimuth'),
-            'hits': weighter.get_column('IceTopHLCSeedRTPulses_SnowUnAttenuated_info', 'nstrings'),
-            'reco_pass': weighter.get_column('IT73AnalysisIceTopQualityCuts', 'IceTop_reco_succeeded'),
-            'Hweights': weighter.get_weights(simweights.GaisserH4a_IT()),
-            'Gweights': weighter.get_weights(simweights.GlobalSplineFit_IT())
-        }
+        if args.year==2012 and (args.model=='EPOS-LHC' or args.model=='QGSJET-II-04' or args.model=='SIBYLL2.3'):
+            DATA = {
+                'energy': weighter.get_column('MCPrimary', 'energy'),
+                'reco_energy': weighter.get_column('Laputop', 'energy'),
+                'particle_type': weighter.get_column('MCPrimary', 'type'),
+                'showerplane_zen': weighter.get_column('ShowerPlane', 'zenith'),
+                'laputop_zen': weighter.get_column('Laputop', 'zenith'),
+                'true_zenith': weighter.get_column('MCPrimary', 'zenith'),
+                'showerplane_az': weighter.get_column('ShowerPlane', 'azimuth'),
+                'laputop_az': weighter.get_column('Laputop', 'azimuth'),
+                'true_azimuth': weighter.get_column('MCPrimary', 'azimuth'),
+                'hits': weighter.get_column('IceTopHLCSeedRTPulses_SnowUnAttenuated_info', 'nstrings'),
+                'reco_pass': weighter.get_column('IT73AnalysisIceTopQualityCuts', 'IceTop_reco_succeeded'),
+                'Hweights': weighter.get_weights(simweights.GaisserH4a_IT()),
+                'Gweights': weighter.get_weights(simweights.GlobalSplineFit2Comp_IT()),
+            }
+        else:
+            os.remove(save_data_dir + 'Gweights.npy')
+            DATA = {
+                'energy': weighter.get_column('MCPrimary', 'energy'),
+                'reco_energy': weighter.get_column('Laputop', 'energy'),
+                'particle_type': weighter.get_column('MCPrimary', 'type'),
+                'showerplane_zen': weighter.get_column('ShowerPlane', 'zenith'),
+                'laputop_zen': weighter.get_column('Laputop', 'zenith'),
+                'true_zenith': weighter.get_column('MCPrimary', 'zenith'),
+                'showerplane_az': weighter.get_column('ShowerPlane', 'azimuth'),
+                'laputop_az': weighter.get_column('Laputop', 'azimuth'),
+                'true_azimuth': weighter.get_column('MCPrimary', 'azimuth'),
+                'hits': weighter.get_column('IceTopHLCSeedRTPulses_SnowUnAttenuated_info', 'nstrings'),
+                'reco_pass': weighter.get_column('IT73AnalysisIceTopQualityCuts', 'IceTop_reco_succeeded'),
+                'Hweights': weighter.get_weights(simweights.GaisserH4a_IT()),
+                'Gweights': weighter.get_weights(simweights.GlobalSplineFit_IT())
+            }
         print('Got data!')
 
         # If the file path for the year and interaction model does not exist, create it
