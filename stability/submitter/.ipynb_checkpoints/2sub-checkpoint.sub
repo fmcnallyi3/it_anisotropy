@@ -1,0 +1,8 @@
+universe = vanilla
+executable = /home/cjoiner/it_anisotropy/stability/submitter/npx4-execs/it_counts_2012_Tier2.sh
+log = /home/cjoiner/it_anisotropy/stability/submitter/npx4-logs/it_counts_2012_Tier2.log
+output = /home/cjoiner/it_anisotropy/stability/submitter/npx4-out/it_counts_2012_Tier2.out
+error = /home/cjoiner/it_anisotropy/stability/submitter/npx4-error/it_counts_2012_Tier2.error
+notification = never
+getenv = True
+queue

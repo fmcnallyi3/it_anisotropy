@@ -3,7 +3,7 @@ for the 12-year IceTop anisotropy paper. It currently features the following
 items:
 
 - `README.md` : This file
-- `count_finder.py` : Calculates daily counts from map files located in Alex
+- `count_finder.py` : Calculates daily .json counts from map files located in Alex
   McClure's output directory in /data/ana
 - `directories.py` : Designed to establish names for commonly-used directories
   (location of daily maps, output destination for rate plots, etc.). INCOMPLETE
@@ -11,7 +11,9 @@ items:
 - `grl_tools.py` : Tools for reading the good run lists from Serap and I3Live
 - `livetime_test.ipynb` : Jupyter notebook for playing with livetime and rate
   calculations
-- `maker.py` : Submission script for count_finder.py
+- `maker.py` : Submission script for count_finder.py. Used to create .json
+  counts from Alex McClure's output directory on mass. Ideally, this should not
+  need to be used after the original .json counts are made.
 - `rate_finder.py` : Designed to calculate rate on a daily basis. INCOMPLETE --
   has not been updated since its original use with IceCube
 - `rate_check.py` : Designed to look for significant deviations from a rolling

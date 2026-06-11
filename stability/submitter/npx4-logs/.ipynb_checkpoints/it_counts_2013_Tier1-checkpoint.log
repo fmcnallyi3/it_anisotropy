@@ -1,0 +1,42 @@
+000 (10037915.000.000) 2026-03-20 16:16:28 Job submitted from host: <10.128.10.103:9618?addrs=10.128.10.103-9618&alias=npx-submitter.icecube.wisc.edu&noUDP&sock=schedd_2477_982d>
+...
+001 (10037915.000.000) 2026-03-20 16:16:46 Job executing on host: <10.128.11.112:41009?addrs=10.128.11.112-41009&alias=n-r720-53.icecube.wisc.edu>
+	SlotName: slot1_21@n-r720-53.icecube.wisc.edu
+	admin_mutex_1 = 0
+	admin_mutex_2 = 0
+	admin_mutex_3 = 0
+	CondorScratchDir = "/scratch/condor/dir_2790723"
+	Cpus = 1
+	Disk = 1002117
+	GPUs = 0
+	machine_token = 0
+	Memory = 1024
+...
+006 (10037915.000.000) 2026-03-20 16:16:51 Image size of job updated: 16
+	0  -  MemoryUsage of job (MB)
+	0  -  ResidentSetSize of job (KB)
+...
+005 (10037915.000.000) 2026-03-20 16:16:52 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :        0        1         1 
+	   Disk (KB)             :        1  1000000   1002117 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           :        0     1000      1024 
+	   TimeExecute (s)       :        5                    
+	   TimeSlotBusy (s)      :        6                    
+
+	Job terminated of its own accord at 2026-03-20T21:16:51Z with exit-code 0.
+...

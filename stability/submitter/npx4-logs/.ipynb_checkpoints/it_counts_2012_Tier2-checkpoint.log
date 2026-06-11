@@ -1,0 +1,192 @@
+000 (235156342.000.000) 2025-07-24 13:18:49 Job submitted from host: <10.128.11.86:49619?addrs=10.128.11.86-49619&alias=submit-1.icecube.wisc.edu>
+...
+001 (235156342.000.000) 2025-07-24 13:19:00 Job executing on host: <10.128.11.45:47953?addrs=10.128.11.45-47953&alias=c9-6.icecube.wisc.edu>
+...
+006 (235156342.000.000) 2025-07-24 13:19:09 Image size of job updated: 95860
+	85  -  MemoryUsage of job (MB)
+	86752  -  ResidentSetSize of job (KB)
+...
+006 (235156342.000.000) 2025-07-24 13:24:10 Image size of job updated: 398440
+	85  -  MemoryUsage of job (MB)
+	86884  -  ResidentSetSize of job (KB)
+...
+006 (235156342.000.000) 2025-07-24 13:44:12 Image size of job updated: 398440
+	85  -  MemoryUsage of job (MB)
+	87016  -  ResidentSetSize of job (KB)
+...
+006 (235156342.000.000) 2025-07-24 17:39:36 Image size of job updated: 398824
+	86  -  MemoryUsage of job (MB)
+	87412  -  ResidentSetSize of job (KB)
+...
+005 (235156342.000.000) 2025-07-24 17:54:38 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:25:13, Sys 0 00:01:13  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:25:13, Sys 0 00:01:13  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :     0.09        1         1 
+	   Disk (KB)             :     1     1000000   3320883 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           :    86        1000      1024 
+
+	Job terminated of its own accord at 2025-07-24T22:54:38Z.
+...
+000 (235226209.000.000) 2025-07-25 09:37:52 Job submitted from host: <10.128.11.86:49619?addrs=10.128.11.86-49619&alias=submit-1.icecube.wisc.edu>
+...
+001 (235226209.000.000) 2025-07-25 09:38:33 Job executing on host: <10.128.10.20:34690?addrs=10.128.10.20-34690&alias=n-110.icecube.wisc.edu>
+...
+006 (235226209.000.000) 2025-07-25 09:38:42 Image size of job updated: 99592
+	77  -  MemoryUsage of job (MB)
+	78076  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 09:43:43 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86244  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 09:48:44 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86376  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 12:23:58 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86392  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 13:34:05 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86436  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 14:14:10 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86468  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 14:24:11 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86608  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 14:29:11 Image size of job updated: 395876
+	85  -  MemoryUsage of job (MB)
+	86872  -  ResidentSetSize of job (KB)
+...
+006 (235226209.000.000) 2025-07-25 14:32:11 Image size of job updated: 396264
+	85  -  MemoryUsage of job (MB)
+	86872  -  ResidentSetSize of job (KB)
+...
+005 (235226209.000.000) 2025-07-25 14:32:11 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:26:51, Sys 0 00:01:19  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:26:51, Sys 0 00:01:19  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :     0.10        1         1 
+	   Disk (KB)             :     1     1000000   1165874 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           :    85        1000      1024 
+
+	Job terminated of its own accord at 2025-07-25T19:32:11Z.
+...
+000 (239735718.000.000) 2025-10-10 23:17:54 Job submitted from host: <10.128.11.86:45277?addrs=10.128.11.86-45277&alias=submit-1.icecube.wisc.edu>
+...
+001 (239735718.000.000) 2025-10-10 23:19:39 Job executing on host: <10.128.10.161:36806?addrs=10.128.10.161-36806&alias=gtx-26.icecube.wisc.edu>
+...
+006 (239735718.000.000) 2025-10-10 23:19:47 Image size of job updated: 355852
+	84  -  MemoryUsage of job (MB)
+	85416  -  ResidentSetSize of job (KB)
+...
+006 (239735718.000.000) 2025-10-10 23:24:47 Image size of job updated: 398440
+	84  -  MemoryUsage of job (MB)
+	85944  -  ResidentSetSize of job (KB)
+...
+006 (239735718.000.000) 2025-10-10 23:29:48 Image size of job updated: 398440
+	85  -  MemoryUsage of job (MB)
+	86472  -  ResidentSetSize of job (KB)
+...
+006 (239735718.000.000) 2025-10-10 23:34:49 Image size of job updated: 398440
+	85  -  MemoryUsage of job (MB)
+	87000  -  ResidentSetSize of job (KB)
+...
+006 (239735718.000.000) 2025-10-11 00:04:52 Image size of job updated: 398440
+	86  -  MemoryUsage of job (MB)
+	87132  -  ResidentSetSize of job (KB)
+...
+005 (239735718.000.000) 2025-10-11 04:13:08 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:19:46, Sys 0 00:01:03  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:19:46, Sys 0 00:01:03  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :     0.07        1         1 
+	   Disk (KB)             :     1     1000000   1583775 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           :    86        1000      1024 
+
+	Job terminated of its own accord at 2025-10-11T09:13:08Z.
+...
+000 (10032663.000.000) 2026-03-20 14:54:15 Job submitted from host: <10.128.10.103:9618?addrs=10.128.10.103-9618&alias=npx-submitter.icecube.wisc.edu&noUDP&sock=schedd_2477_982d>
+...
+001 (10032663.000.000) 2026-03-20 14:54:41 Job executing on host: <10.128.11.104:42467?addrs=10.128.11.104-42467&alias=n-r720-45.icecube.wisc.edu>
+	SlotName: slot1_24@n-r720-45.icecube.wisc.edu
+	admin_mutex_1 = 0
+	admin_mutex_2 = 0
+	admin_mutex_3 = 0
+	CondorScratchDir = "/scratch/condor/dir_92701"
+	Cpus = 1
+	Disk = 1002117
+	GPUs = 0
+	machine_token = 0
+	Memory = 1024
+...
+006 (10032663.000.000) 2026-03-20 14:54:46 Image size of job updated: 144
+	0  -  MemoryUsage of job (MB)
+	0  -  ResidentSetSize of job (KB)
+...
+005 (10032663.000.000) 2026-03-20 14:54:46 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :        0        1         1 
+	   Disk (KB)             :        1  1000000   1002117 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           :        0     1000      1024 
+	   TimeExecute (s)       :        5                    
+	   TimeSlotBusy (s)      :        5                    
+
+	Job terminated of its own accord at 2026-03-20T19:54:46Z with exit-code 0.
+...

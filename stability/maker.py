@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 from pathlib import Path
 from glob import glob
+import healpy as hp
 
 from submitter.pysubmit import pysubmit
 
@@ -38,11 +39,6 @@ if __name__ == "__main__":
 
     for year in args.year:
         for tier in args.tier:
-            # tiers 3 and 4 were rerun as newdag_fits, as the original combined fits were incorrect
-            if tier in [1,2]:
-                newdag_fits = False
-            else:
-                newdag_fits = True
             # Check for existing outfile
             outfile = f'{outdir}/counts_{year}_Tier{tier}.json'
             if Path(outfile).exists() and not args.overwrite:
@@ -50,11 +46,7 @@ if __name__ == "__main__":
                 continue
 
             # Base name for all files
-            if newdag_fits == True:
-                file_base = f'{prefix}{tier}/newdag_fits/{year}'
-                print(f'newdag_fits used!')
-            if newdag_fits == False:
-                file_base = f'{prefix}{tier}/fitsbydate/{year}'
+            file_base = f'{prefix}{tier}/fitsbydate/{year}'
 
             # Some years don't have Tiers 1 and 2 (2016+)
             files = sorted(glob(f'{file_base}*/*.fits.gz'))

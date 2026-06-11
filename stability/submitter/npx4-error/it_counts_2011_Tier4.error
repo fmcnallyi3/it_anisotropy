@@ -1,0 +1,2 @@
+/home/cjoiner/it_anisotropy/stability/count_finder.py:27: HealpyDeprecationWarning: "verbose" was deprecated in version 1.15.0 and will be removed in a future version. 
+  data = hp.read_map(map_file, verbose=False)

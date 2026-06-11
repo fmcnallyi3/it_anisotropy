@@ -1,0 +1,46 @@
+000 (11580845.000.000) 2026-04-01 10:01:04 Job submitted from host: <10.128.10.103:9618?addrs=10.128.10.103-9618&alias=npx-submitter.icecube.wisc.edu&noUDP&sock=schedd_2477_982d>
+...
+001 (11580845.000.000) 2026-04-01 10:01:11 Job executing on host: <10.128.11.109:36403?addrs=10.128.11.109-36403&alias=n-r720-50.icecube.wisc.edu>
+	SlotName: slot1_29@n-r720-50.icecube.wisc.edu
+	admin_mutex_1 = 0
+	admin_mutex_2 = 0
+	admin_mutex_3 = 0
+	CondorScratchDir = "/scratch/condor/dir_3333711"
+	Cpus = 1
+	Disk = 1002117
+	GPUs = 0
+	machine_token = 0
+	Memory = 1024
+...
+006 (11580845.000.000) 2026-04-01 10:01:25 Image size of job updated: 45704
+	45  -  MemoryUsage of job (MB)
+	45704  -  ResidentSetSize of job (KB)
+...
+006 (11580845.000.000) 2026-04-01 10:06:26 Image size of job updated: 86692
+	85  -  MemoryUsage of job (MB)
+	86692  -  ResidentSetSize of job (KB)
+...
+005 (11580845.000.000) 2026-04-01 15:54:30 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:31:30, Sys 0 00:01:57  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:31:30, Sys 0 00:01:57  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :     0.06        1         1 
+	   Disk (KB)             :     1     1000000   1002117 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           :    85        1000      1024 
+	   TimeExecute (s)       : 21199                       
+	   TimeSlotBusy (s)      : 21199                       
+
+	Job terminated of its own accord at 2026-04-01T20:54:30Z with exit-code 0.
+...
